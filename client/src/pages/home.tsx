@@ -83,13 +83,6 @@ export default function Home() {
                     className="w-full h-full object-cover object-top"
                   />
                   
-                  {/* Floating "Social Proof" Cards */}
-                  <div className="absolute top-20 right-[-20px] z-30 bg-white text-[#0f172a] p-4 rounded-lg shadow-xl max-w-[200px] animate-in slide-in-from-right-10 duration-700 delay-700">
-                     <div className="flex items-center gap-1 mb-1">
-                        {[1,2,3,4,5].map(i => <span key={i} className="text-yellow-500">★</span>)}
-                     </div>
-                    <div className="text-xs font-bold uppercase tracking-wider">"Best ROI we've ever had."</div>
-                  </div>
                </div>
             </div>
           </div>
