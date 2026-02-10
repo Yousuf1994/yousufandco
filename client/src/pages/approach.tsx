@@ -90,7 +90,7 @@ export default function Approach() {
         <div className="container mx-auto px-6 max-w-2xl">
           <h2 className="text-3xl font-serif font-bold mb-6">Ready to stop guessing?</h2>
           <Button size="lg" variant="secondary" className="h-12 px-8" asChild>
-            <Link href="/contact">Apply for a Diagnostic</Link>
+            <Link href="/contact">Consult for Diagnostic</Link>
           </Button>
         </div>
       </section>

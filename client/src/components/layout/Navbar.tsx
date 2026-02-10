@@ -56,7 +56,7 @@ export function Navbar() {
             </Link>
           ))}
           <Button size="sm" className="ml-4 font-medium" asChild>
-            <Link href="/contact">Apply</Link>
+            <Link href="/contact">Schedule a call</Link>
           </Button>
         </div>
 
@@ -88,7 +88,7 @@ export function Navbar() {
             ))}
             <div className="pt-4 border-t border-border">
               <Button className="w-full" asChild>
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>Apply for Diagnostic</Link>
+                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>Consult for Diagnostic</Link>
               </Button>
             </div>
           </div>

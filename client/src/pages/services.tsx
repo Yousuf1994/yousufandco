@@ -66,7 +66,7 @@ export default function Services() {
                      {service.id === "advisory" && "From $3,000/mo"}
                    </div>
                    <Button asChild size="lg">
-                     <Link href="/contact">Inquire Now</Link>
+                     <Link href="/contact">Schedule a call</Link>
                    </Button>
                 </div>
               </div>

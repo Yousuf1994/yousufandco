@@ -41,7 +41,7 @@ export default function Contact() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     toast({
-      title: "Application Received",
+      title: "Request Received",
       description: "Thanks for reaching out. I'll review your details and get back to you within 48 hours.",
     });
     form.reset();
@@ -209,7 +209,7 @@ export default function Contact() {
                       )}
                     />
 
-                    <Button type="submit" size="lg" className="w-full h-12">Submit Application</Button>
+                    <Button type="submit" size="lg" className="w-full h-12">Schedule a call</Button>
                   </form>
                 </Form>
               </CardContent>

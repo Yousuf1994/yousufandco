@@ -7,6 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { ArrowRight, Check, BarChart2, TrendingUp, Target, Layers, ArrowUpRight, Play } from "lucide-react";
 import { Link } from "wouter";
 import { services, frameworkSteps, caseStudies, faqs } from "@/lib/data";
+import { Input } from "@/components/ui/input";
 
 export default function Home() {
   return (
@@ -46,7 +47,7 @@ export default function Home() {
               
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button size="lg" className="h-14 px-8 text-base bg-white text-[#0f172a] hover:bg-white/90 font-bold tracking-wide shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all transform hover:scale-105" asChild>
-                  <Link href="/contact">Apply for Diagnostic</Link>
+                  <Link href="/contact">Consult for Diagnostic</Link>
                 </Button>
                 <Button size="lg" variant="outline" className="h-14 px-8 text-base border-white/20 text-white hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 group" asChild>
                   <Link href="/case-library">
@@ -56,15 +57,14 @@ export default function Home() {
               </div>
 
               <div className="pt-8 flex items-center gap-4 text-sm text-white/40 font-medium">
-                <span>TRUSTED BY FOUNDERS AT</span>
+                <span>Worked with,</span>
                 <div className="h-px bg-white/10 flex-1" />
               </div>
-              <div className="flex gap-8 opacity-50 grayscale mix-blend-screen">
-                 {/* Mock Logos */}
-                 <div className="text-xl font-serif font-bold tracking-widest">ACME</div>
-                 <div className="text-xl font-sans font-black tracking-tighter">STRIPE</div>
-                 <div className="text-xl font-mono font-bold">REPLIT</div>
-                 <div className="text-xl font-serif italic">VOGUE</div>
+              <div className="flex flex-wrap gap-8 opacity-50 grayscale mix-blend-screen items-center">
+                 <div className="text-xl font-serif font-bold tracking-widest">WWF</div>
+                 <div className="text-xl font-sans font-black tracking-tighter">TikTok</div>
+                 <div className="text-xl font-mono font-bold tracking-tight">INFINITI</div>
+                 <div className="text-xl font-serif italic font-bold">Motive</div>
               </div>
             </div>
             
@@ -78,10 +78,6 @@ export default function Home() {
                     <span className="text-slate-700 font-serif text-9xl font-bold opacity-20">AS</span>
                   </div>
                   {/* Floating "Social Proof" Cards */}
-                  <div className="absolute bottom-20 left-[-20px] z-30 bg-[#0f172a] border border-white/10 p-4 rounded-lg shadow-xl max-w-[200px] animate-in slide-in-from-left-10 duration-700 delay-500">
-                    <div className="text-3xl font-bold text-white mb-1">$50M+</div>
-                    <div className="text-xs text-white/60 uppercase tracking-wider">Revenue Generated for Clients</div>
-                  </div>
                   <div className="absolute top-20 right-[-20px] z-30 bg-white text-[#0f172a] p-4 rounded-lg shadow-xl max-w-[200px] animate-in slide-in-from-right-10 duration-700 delay-700">
                      <div className="flex items-center gap-1 mb-1">
                         {[1,2,3,4,5].map(i => <span key={i} className="text-yellow-500">★</span>)}
@@ -211,7 +207,7 @@ export default function Home() {
                 </ul>
 
                 <Button className="w-full bg-white text-[#0f172a] hover:bg-white/90" asChild>
-                  <Link href="/contact">{service.cta}</Link>
+                  <Link href="/contact">Schedule a call</Link>
                 </Button>
               </div>
             ))}
@@ -309,12 +305,18 @@ export default function Home() {
           <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
             You are one constraint away from the growth you want. Let's find it and fix it.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
-             <Button size="lg" className="h-16 px-12 text-lg font-bold bg-red-600 hover:bg-red-700 shadow-xl shadow-red-900/20" asChild>
-                <Link href="/contact">Apply for Diagnostic</Link>
-             </Button>
+          
+          <div className="max-w-md mx-auto bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm">
+             <div className="flex flex-col gap-4">
+                <Input type="email" placeholder="Enter your email address" className="h-12 bg-white/10 border-white/20 text-white placeholder:text-white/40" />
+                <Button size="lg" className="h-12 text-lg font-bold bg-red-600 hover:bg-red-700 shadow-xl shadow-red-900/20" asChild>
+                    <Link href="/contact">Schedule a call</Link>
+                </Button>
+             </div>
+             <p className="text-xs text-white/40 mt-4">No spam. Unsubscribe anytime.</p>
           </div>
-          <p className="text-sm text-white/40 mt-8 italic">Limited spots available for this quarter.</p>
+
+          <p className="text-sm text-white/40 mt-12 italic">Limited spots available for this quarter.</p>
         </div>
       </section>
 
