@@ -130,7 +130,7 @@ export default function Home() {
       <section className="py-24 container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold leading-tight">Most consultants sell you <br/><span className="italic text-muted-foreground">time</span>. I sell <span className="text-primary underline decoration-primary/30 underline-offset-4">outcomes</span>.</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold leading-tight">Most consultants sell you <br/><span className="italic text-muted-foreground">time</span>. I sell clarity that drives <span className="text-primary underline decoration-primary/30 underline-offset-4">outcomes</span>.</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
               You don't need more dashboards. You don't need a 50-page audit that gathers dust. 
               You need a decision. You need a direction. You need a result.
