@@ -71,15 +71,18 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Right: The "Guru" Shot (Placeholder) */}
+            {/* Right: The "Guru" Shot */}
             <div className="relative hidden lg:block h-[600px] animate-in slide-in-from-right-5 duration-1000 fade-in delay-200">
                {/* This represents the "Consultant Photo" typical of Dan Lok style sites */}
                <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-transparent to-transparent z-20" />
-               <div className="relative h-full w-full rounded-2xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl">
-                  {/* Abstract Representation of "The Consultant" */}
-                  <div className="absolute inset-0 bg-slate-800 flex items-center justify-center">
-                    <span className="text-slate-700 font-serif text-9xl font-bold opacity-20">AS</span>
-                  </div>
+               <div className="relative h-full w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                  {/* The Consultant Photo */}
+                  <img 
+                    src="/images/hero-profile.png" 
+                    alt="Consultant Portrait" 
+                    className="w-full h-full object-cover object-top"
+                  />
+                  
                   {/* Floating "Social Proof" Cards */}
                   <div className="absolute top-20 right-[-20px] z-30 bg-white text-[#0f172a] p-4 rounded-lg shadow-xl max-w-[200px] animate-in slide-in-from-right-10 duration-700 delay-700">
                      <div className="flex items-center gap-1 mb-1">
