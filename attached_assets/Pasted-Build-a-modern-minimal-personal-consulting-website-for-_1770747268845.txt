@@ -1,0 +1,137 @@
+Build a modern, minimal personal consulting website for a “Product & Growth Strategist for Scaling Companies”.
+
+IMPORTANT:
+- The site must NOT look identical to pathforgrowth.com.
+- Do NOT copy any text, layout, spacing rhythm, or section order exactly.
+- Only take inspiration from the idea of a clean, conversion-focused consulting site.
+- Use a distinct visual system: different typography scale, section composition, and component styles.
+- No proprietary assets. No similar-looking hero layout. No duplicate structure.
+
+Tech:
+- Next.js 14+ App Router, TypeScript
+- TailwindCSS
+- Mobile-first responsive
+- Accessible components (semantic HTML, focus states, aria labels)
+
+Visual Design (make it distinct):
+- Use a split hero layout (left: copy, right: “Framework Snapshot” card) instead of a centered hero.
+- Use a subtle background grid or gradient tint behind hero and CTA sections.
+- Use asymmetric section layouts: alternating text-left / card-right blocks.
+- Use pill badges, bordered cards, and a vertical “timeline” for the process section.
+- Use a sticky navbar with a compact “Apply” button on the right.
+- Use different spacing rhythm than the reference site (e.g., more card-based segmentation).
+- Use a distinctive accent color (one muted accent) for CTAs and links.
+
+Brand voice:
+- Executive, calm, analytical, outcome-driven
+- Not agency-like, no buzzwords
+
+Pages:
+1) Home (/)
+2) Approach (/approach)
+3) Services (/services)  [NOTE: different from the reference; use “Services” not “Work With Me”]
+4) Case Library (/case-library)
+5) Insights (/insights)
+6) Contact (/contact)
+
+Navigation:
+Home, Approach, Services, Case Library, Insights, Contact, [Apply CTA button]
+
+HOME PAGE sections (distinct order and design):
+A) Split Hero (two-column)
+Left:
+- Badge: “Decision Intelligence for Growth”
+- Headline: “Product & Growth Strategist for Scaling Companies”
+- Sub-headline: “I help leadership teams identify where growth systems are leaking revenue and design the roadmap to fix them.”
+- Primary CTA: “Apply for a Growth Diagnostic”
+- Secondary CTA: “See the 5-step framework”
+- Small line: “Clarity → Priorities → Measurable outcomes”
+Right:
+- A “Framework Snapshot” card showing:
+  - “What we diagnose in 30 days”
+  - bullets: Funnel leakage, channel efficiency, measurement gaps, experiment backlog, roadmap
+  - mini list: “You get: Audit + Roadmap + Executive Brief”
+
+B) “Who I Help” (3 audience tiles)
+- Founders scaling acquisition
+- Growth teams lacking measurement clarity
+- Product-led teams needing activation/retention focus
+(Keep as non-claims, no fake logos)
+
+C) “Outcomes, not activity” section (text + metrics placeholders)
+- Explain the philosophy: diagnose before spending more
+- Include 3 “before/after style” examples without numbers (no fake data):
+  - “From channel confusion → budget clarity”
+  - “From traffic growth → conversion lift focus”
+  - “From dashboards → decisions”
+
+D) Services (3 service blocks, alternating layout)
+1) Growth Diagnostic & Decision Blueprint (30 days)
+2) Measurement & Decision Intelligence Setup (2–4 weeks)
+3) Fractional Growth Advisory (monthly)
+Each includes: Ideal for, Deliverables, CTA “Explore”
+
+E) The 5-Step Framework (vertical timeline style)
+Title: “The Growth Systems Leak Audit”
+Steps:
+1. Funnel decomposition
+2. Channel efficiency map
+3. Measurement gap review
+4. Leverage-point prioritization
+5. 90-day execution roadmap
+Add “What I need from you” mini list: analytics access, ad accounts read-only, CRM exports, etc.
+
+F) Case Library Preview (3 cards)
+Title: “Case Library (Sample Analyses)”
+Cards clearly labeled as “Sample” until real clients exist:
+- “Ecommerce: traffic up, revenue flat”
+- “Lead gen: CPL rising, pipeline flat”
+- “App: installs high, activation low”
+Each opens a dedicated page with a structured template: Context, Signals, Hypotheses, What I’d test, Roadmap.
+
+G) FAQ (accordion)
+Include: who it’s for, timeline, what access needed, pricing starts-at (placeholders), what happens after, how advisory works.
+
+H) Final CTA (distinct visual block)
+- Title: “Find the constraint. Fix the system.”
+- Buttons: Apply / Contact
+- Add note: “I take on a limited number of engagements.”
+
+Footer:
+- Minimal, with navigation + LinkedIn link placeholder + email
+- No resemblance to the reference footer layout
+
+APPROACH page:
+- Hero with framework overview
+- A “What happens week-by-week” timeline (Week 1–4)
+- “Deliverables you’ll use” section (exec brief, roadmap, backlog)
+- CTA to Apply
+
+SERVICES page:
+- Each service has its own section with:
+  - outcomes
+  - deliverables
+  - timeline
+  - starts-at pricing placeholder
+  - FAQs per service
+- Add “Which engagement is right?” chooser (simple decision tree)
+
+CASE LIBRARY page:
+- List of case cards (samples + later real case studies)
+- Tag filters: Ecommerce, SaaS, App, Measurement, Funnel
+- Each case page uses a consistent template
+
+INSIGHTS page:
+- Local JSON data list (title/excerpt/date)
+- Optional post pages
+
+CONTACT page:
+- Clean contact form fields: name, email, company, website, what you need, budget range, timeline
+- Include “Or book a call” placeholder link
+- Basic client-side validation states
+
+Implementation details:
+- Use reusable components: Container, Section, Button, Card, Badge, Timeline, Accordion, CTA.
+- Create local content files: faqs.ts, services.ts, caseStudies.ts, posts.ts.
+- Ensure all pages compile and run.
+- Do not include any copyrighted text or copied design from any external site.
