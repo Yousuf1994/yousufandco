@@ -102,7 +102,7 @@ export default function Home() {
             {[
               { 
                 title: "The Scaling Founder", 
-                desc: "You've hit $2M-$10M ARR, but 'what got you here won't get you there.' You need systems, not hustle.",
+                desc: "You've hit / crossed $1M ARR, but 'what got you here won't get you there.' You need systems, not hustle.",
                 icon: "🚀"
               },
               { 
