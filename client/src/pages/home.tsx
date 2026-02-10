@@ -8,6 +8,9 @@ import { ArrowRight, Check, BarChart2, TrendingUp, Target, Layers, ArrowUpRight,
 import { Link } from "wouter";
 import { services, frameworkSteps, caseStudies, faqs } from "@/lib/data";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function Home() {
   return (
@@ -306,14 +309,71 @@ export default function Home() {
             You are one constraint away from the growth you want. Let's find it and fix it.
           </p>
           
-          <div className="max-w-md mx-auto bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm">
-             <div className="flex flex-col gap-4">
-                <Input type="email" placeholder="Enter your email address" className="h-12 bg-white/10 border-white/20 text-white placeholder:text-white/40" />
-                <Button size="lg" className="h-12 text-lg font-bold bg-red-600 hover:bg-red-700 shadow-xl shadow-red-900/20" asChild>
+          <div className="max-w-3xl mx-auto bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-md">
+             <form className="space-y-4 text-left">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                   <div className="space-y-2">
+                      <Label htmlFor="name" className="text-white/80">Full Name</Label>
+                      <Input id="name" placeholder="John Doe" className="bg-white/10 border-white/20 text-white placeholder:text-white/40" />
+                   </div>
+                   <div className="space-y-2">
+                      <Label htmlFor="email" className="text-white/80">Email</Label>
+                      <Input id="email" type="email" placeholder="john@company.com" className="bg-white/10 border-white/20 text-white placeholder:text-white/40" />
+                   </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                   <div className="space-y-2">
+                      <Label htmlFor="contact" className="text-white/80">Contact Number</Label>
+                      <Input id="contact" placeholder="+1 (555) 000-0000" className="bg-white/10 border-white/20 text-white placeholder:text-white/40" />
+                   </div>
+                   <div className="space-y-2">
+                      <Label htmlFor="company" className="text-white/80">Company Name</Label>
+                      <Input id="company" placeholder="Acme Inc." className="bg-white/10 border-white/20 text-white placeholder:text-white/40" />
+                   </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                   <div className="space-y-2">
+                      <Label htmlFor="size" className="text-white/80">Team Size</Label>
+                      <Select>
+                        <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                          <SelectValue placeholder="Select size" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1-10">1-10</SelectItem>
+                          <SelectItem value="11-50">11-50</SelectItem>
+                          <SelectItem value="51-200">51-200</SelectItem>
+                          <SelectItem value="200+">200+</SelectItem>
+                        </SelectContent>
+                      </Select>
+                   </div>
+                   <div className="space-y-2">
+                      <Label htmlFor="revenue" className="text-white/80">Annual Revenue</Label>
+                      <Select>
+                        <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                          <SelectValue placeholder="Select revenue" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="<1M">&lt; $1M</SelectItem>
+                          <SelectItem value="1M-5M">$1M - $5M</SelectItem>
+                          <SelectItem value="5M-20M">$5M - $20M</SelectItem>
+                          <SelectItem value="20M+">$20M+</SelectItem>
+                        </SelectContent>
+                      </Select>
+                   </div>
+                </div>
+
+                <div className="space-y-2">
+                   <Label htmlFor="challenge" className="text-white/80">What is your biggest challenge?</Label>
+                   <Textarea id="challenge" placeholder="Tell me about your bottlenecks..." className="bg-white/10 border-white/20 text-white placeholder:text-white/40 min-h-[100px]" />
+                </div>
+
+                <Button size="lg" className="w-full h-12 text-lg font-bold bg-red-600 hover:bg-red-700 shadow-xl shadow-red-900/20" asChild>
                     <Link href="/contact">Schedule a call</Link>
                 </Button>
-             </div>
-             <p className="text-xs text-white/40 mt-4">No spam. Unsubscribe anytime.</p>
+             </form>
+             <p className="text-xs text-center text-white/40 mt-4">No spam. Unsubscribe anytime.</p>
           </div>
 
           <p className="text-sm text-white/40 mt-12 italic">Limited spots available for this quarter.</p>

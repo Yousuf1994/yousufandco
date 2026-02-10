@@ -14,15 +14,13 @@ import { useToast } from "@/hooks/use-toast";
 import { Mail, Linkedin } from "lucide-react";
 
 const formSchema = z.object({
-  name: z.string().min(2, "Name is required"),
+  fullName: z.string().min(2, "Full Name is required"),
   email: z.string().email("Invalid email address"),
-  company: z.string().min(1, "Company name is required"),
-  website: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
-  service: z.string({
-    required_error: "Please select an interest",
-  }),
-  budget: z.string().optional(),
-  message: z.string().min(10, "Please tell me a bit about your situation"),
+  phone: z.string().min(5, "Contact number is required"),
+  companyName: z.string().min(1, "Company name is required"),
+  teamSize: z.string({ required_error: "Please select team size" }),
+  revenue: z.string({ required_error: "Please select annual revenue" }),
+  challenge: z.string().min(10, "Please tell me a bit about your challenge"),
 });
 
 export default function Contact() {
@@ -30,11 +28,13 @@ export default function Contact() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
+      fullName: "",
       email: "",
-      company: "",
-      website: "",
-      message: "",
+      phone: "",
+      companyName: "",
+      teamSize: "",
+      revenue: "",
+      challenge: "",
     },
   });
 
@@ -89,10 +89,10 @@ export default function Contact() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
-                        name="name"
+                        name="fullName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Name</FormLabel>
+                            <FormLabel>Full Name</FormLabel>
                             <FormControl>
                               <Input placeholder="Jane Doe" {...field} />
                             </FormControl>
@@ -105,7 +105,7 @@ export default function Contact() {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Work Email</FormLabel>
+                            <FormLabel>Email</FormLabel>
                             <FormControl>
                               <Input placeholder="jane@company.com" {...field} />
                             </FormControl>
@@ -118,12 +118,12 @@ export default function Contact() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
-                        name="company"
+                        name="phone"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Company</FormLabel>
+                            <FormLabel>Contact Number</FormLabel>
                             <FormControl>
-                              <Input placeholder="Acme Inc." {...field} />
+                              <Input placeholder="+1 (555) 000-0000" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -131,12 +131,12 @@ export default function Contact() {
                       />
                       <FormField
                         control={form.control}
-                        name="website"
+                        name="companyName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Website</FormLabel>
+                            <FormLabel>Company Name</FormLabel>
                             <FormControl>
-                              <Input placeholder="https://..." {...field} />
+                              <Input placeholder="Acme Inc." {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -144,62 +144,64 @@ export default function Contact() {
                       />
                     </div>
                     
-                    <FormField
-                      control={form.control}
-                      name="service"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>What are you interested in?</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select an option" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="diagnostic">Growth Diagnostic (30 Days)</SelectItem>
-                              <SelectItem value="setup">Measurement Setup</SelectItem>
-                              <SelectItem value="advisory">Monthly Advisory</SelectItem>
-                              <SelectItem value="other">Other / Not Sure</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    
-                     <FormField
-                      control={form.control}
-                      name="budget"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Budget Range (Monthly)</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select a range" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="5k-10k">$5k - $10k</SelectItem>
-                              <SelectItem value="10k-20k">$10k - $20k</SelectItem>
-                              <SelectItem value="20k+">$20k+</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <FormField
+                        control={form.control}
+                        name="teamSize"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Team Size</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select size" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectItem value="1-10">1-10</SelectItem>
+                                <SelectItem value="11-50">11-50</SelectItem>
+                                <SelectItem value="51-200">51-200</SelectItem>
+                                <SelectItem value="200+">200+</SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="revenue"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Annual Revenue</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select revenue" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectItem value="<1M">&lt; $1M</SelectItem>
+                                <SelectItem value="1M-5M">$1M - $5M</SelectItem>
+                                <SelectItem value="5M-20M">$5M - $20M</SelectItem>
+                                <SelectItem value="20M+">$20M+</SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
 
                     <FormField
                       control={form.control}
-                      name="message"
+                      name="challenge"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>What's the biggest challenge you're facing right now?</FormLabel>
+                          <FormLabel>What is your biggest challenge?</FormLabel>
                           <FormControl>
                             <Textarea 
-                              placeholder="e.g. We have traffic but conversion is dropping..." 
+                              placeholder="Describe your current bottleneck..." 
                               className="min-h-[120px]"
                               {...field} 
                             />
