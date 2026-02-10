@@ -44,7 +44,7 @@ export default function Home() {
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">Start Scaling.</span>
                 </h1>
                 <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-lg border-l-2 border-red-500 pl-6">
-                  I help 7-figure founders identify the <span className="text-white font-medium">single constraint</span> holding back their growth—and fix it in 30 days.
+                  I help solo founders and SMEs identify the <span className="text-white font-medium">single constraint</span> holding back their growth—and fix it in 30 days.
                 </p>
               </div>
               
