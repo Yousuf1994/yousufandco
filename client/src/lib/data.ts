@@ -13,46 +13,46 @@ export interface Service {
 
 export const services: Service[] = [
   {
-    id: "diagnostic",
-    title: "Growth Diagnostic & Decision Blueprint",
-    timeline: "30 Days",
-    description: "A comprehensive audit of your growth systems to identify leakage and prioritize high-leverage fixes.",
-    idealFor: "Founders & Heads of Growth who feel their data is messy and roadmap is reactive.",
+    id: "audit",
+    title: "The Revenue Integrity Audit",
+    timeline: "Phase 1",
+    description: "A deep-dive diagnostic into your funnel, attribution signals, and data quality to find immediate 'Found Money'.",
+    idealFor: "Brands losing track of true ROI.",
     deliverables: [
-      "Full Funnel Decomposition",
-      "Channel Efficiency Audit",
-      "Measurement Gap Analysis",
-      "90-Day Execution Roadmap"
+      "Funnel Decomposition",
+      "Attribution Signal Review",
+      "Data Quality Assessment",
+      "Immediate ROI Opportunities"
     ],
-    cta: "Explore Diagnostic"
+    cta: "Explore Audit"
   },
   {
-    id: "setup",
-    title: "Measurement & Decision Intelligence Setup",
-    timeline: "2–4 Weeks",
-    description: "Building the infrastructure you need to make data-backed decisions without drowning in dashboards.",
-    idealFor: "Teams that have GA4/Mixpanel but don't trust the numbers.",
+    id: "blueprint",
+    title: "The Technical Architecture Blueprint",
+    timeline: "Phase 2",
+    description: "I design the 'plumbing'—from CRM mapping to Identity Resolution—so your tech team has a bulletproof execution roadmap.",
+    idealFor: "Teams with disconnected enterprise tools.",
     deliverables: [
-      "Tracking Plan Implementation",
-      "Core KPI Dashboard Construction",
-      "Attribution Model Setup",
-      "Team Training on Data Usage"
+      "CRM Data Mapping",
+      "Identity Resolution Strategy",
+      "Tech Stack Rationalization",
+      "Execution Roadmap"
     ],
-    cta: "Explore Setup"
+    cta: "Explore Blueprint"
   },
   {
-    id: "advisory",
-    title: "Fractional Growth Advisory",
-    timeline: "Monthly Retainer",
-    description: "Ongoing strategic guidance to keep your team focused on outcomes, not just activity.",
-    idealFor: "Scale-ups needing senior growth leadership without the full-time headcount.",
+    id: "orchestration",
+    title: "AI & Automation Orchestration",
+    timeline: "Phase 3",
+    description: "Implementing LLM-driven workflows and API integrations (n8n/OpenAI) to automate personalization and scale your lead nurturing.",
+    idealFor: "Companies ready to scale through automation.",
     deliverables: [
-      "Weekly Strategy Syncs",
-      "Experiment Design Review",
-      "Hiring & Team Structure Support",
-      "Board Deck Preparation"
+      "LLM Workflow Design",
+      "API Integrations (n8n)",
+      "Automated Lead Nurturing",
+      "Personalization at Scale"
     ],
-    cta: "Explore Advisory"
+    cta: "Explore Orchestration"
   }
 ];
 
@@ -72,90 +72,90 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
-    id: "ecommerce-rev",
-    title: "Scaling Revenue While Stabilizing CAC",
-    category: "Ecommerce",
-    description: "How a D2C brand grew revenue 40% while keeping acquisition costs flat through better retention loops.",
-    metrics: "Traffic up, Revenue flat → Revenue up",
+    id: "auto-vendor",
+    title: "Slashed marketing analytics spend by 40%",
+    category: "Automotive",
+    description: "Through strategic vendor rationalization for a global automotive brand.",
+    metrics: "Spend -40% → Same Analytics Quality",
     isSample: true,
-    context: "A D2C home goods brand was scaling ad spend aggressively but seeing diminishing returns. Revenue was plateauing despite higher traffic.",
+    context: "A global automotive brand was paying for redundant enterprise analytics tools.",
     signals: [
-      "CAC increased by 35% in 3 months",
-      "Second-purchase rate dropped from 25% to 15%",
-      "Email open rates were healthy, but CTR was low"
+      "Overlapping CDP and CRM capabilities",
+      "Low utilization of premium features",
+      "High licensing costs"
     ],
     hypotheses: [
-      "The acquisition mix was too reliant on broad targeting, bringing in low-intent users.",
-      "The post-purchase email flow was generic and didn't incentivize the second purchase soon enough.",
-      "Landing pages were optimized for clicks, not AOV."
+      "Consolidating tools could reduce costs without impacting data fidelity.",
+      "The team was only using 20% of the tools they paid for.",
+      "Vendor overlap was causing confusion, not clarity."
     ],
     testPlan: [
-      "Audit and restructure Meta ad account to focus on LTV-based lookalikes.",
-      "Implement a personalized 'replenishment' email flow based on product category.",
-      "A/B test landing page bundles to increase initial AOV."
+      "Audit all existing marketing tech contracts and usage.",
+      "Map required capabilities against core tools.",
+      "Negotiate exits or downgrades for unused software."
     ],
     roadmap: [
-      "Month 1: Ad account restructure & tracking fix.",
-      "Month 2: Email automation overhaul.",
-      "Month 3: Landing page CRO & bundle testing."
+      "Month 1: Vendor Audit.",
+      "Month 2: Capability Mapping.",
+      "Month 3: Implementation & Consolidation."
     ]
   },
   {
-    id: "b2b-lead-gen",
-    title: "Fixing the Leaky Bucket in B2B Lead Gen",
-    category: "SaaS / Lead Gen",
-    description: "Diagnosing why rising CPL wasn't translating to pipeline, and implementing a qualification layer.",
-    metrics: "CPL rising, Pipeline flat → Qualified Pipeline +30%",
+    id: "attribution-signal",
+    title: "Improved attribution signal quality by 11%",
+    category: "E-commerce",
+    description: "Leading to a measurable 2% increase in digitally influenced sales.",
+    metrics: "Signal +11% → Sales +2%",
     isSample: true,
-    context: "A B2B SaaS company was generating plenty of leads through LinkedIn ads, but the sales team complained about lead quality.",
+    context: "A brand had 'Attribution Blindness' leading to inefficient ad spend.",
     signals: [
-      "MQL to SQL conversion rate dropped to < 5%",
-      "Sales cycle length increased by 20%",
-      "High bounce rate on pricing page"
+      "Sales figures didn't match platform dashboards",
+      "High percentage of 'Direct' traffic masking true sources",
+      "Rising CAC across paid channels"
     ],
     hypotheses: [
-      "Ad copy promised features that were only available in the Enterprise plan, attracting wrong fit.",
-      "Lead forms were too short, allowing low-intent submissions.",
-      "Nurture sequences were not segmenting by industry."
+      "First-party data wasn't being correctly passed back to ad platforms.",
+      "Identity resolution was failing across devices.",
+      "Multi-touch attribution models were misconfigured."
     ],
     testPlan: [
-      "Add qualification fields (Company Size, Role) to lead forms.",
-      "Rewrite ad copy to be more specific about the ideal customer profile.",
-      "Create industry-specific landing pages."
+      "Implement server-side tracking via CAPI.",
+      "Fix identity resolution gaps in the CRM.",
+      "Calibrate attribution models to match backend sales data."
     ],
     roadmap: [
-      "Week 1-2: Form & Tracking Setup.",
-      "Week 3-4: Ad Copy & Landing Page refresh.",
-      "Month 2: Nurture sequence segmentation."
+      "Month 1: Tracking infrastructure overhaul.",
+      "Month 2: Identity mapping.",
+      "Month 3: Attribution model training."
     ]
   },
   {
-    id: "app-activation",
-    title: "Turning Installs into Active Users",
-    category: "Mobile App",
-    description: "Revamping the onboarding flow to focus on the 'Aha!' moment rather than just signups.",
-    metrics: "Installs high, Activation low → Activation +15%",
+    id: "tiktok-gtm",
+    title: "Orchestrated regional GTM strategies",
+    category: "Social Media",
+    description: "For platforms like TikTok, driving billions of views and millions in follower growth.",
+    metrics: "Billions of views → Millions of followers",
     isSample: true,
-    context: "A productivity app had great organic install growth but 60% of users churned within Day 1.",
+    context: "A global platform needed to localize and accelerate their GTM strategy.",
     signals: [
-      "High drop-off at the 'Connect Calendar' step during onboarding.",
-      "Users who completed onboarding but didn't create a task churned at 90%.",
-      "Support tickets related to 'how to start' were high."
+      "Slow adoption in key emerging markets",
+      "Content not resonating with local nuances",
+      "High creator acquisition cost"
     ],
     hypotheses: [
-      "The 'Connect Calendar' permission request was too early and scary.",
-      "Users needed to experience the core value (creating a task) *before* being forced to configure settings.",
-      "The empty state was uninspiring."
+      "A localized, culturally relevant GTM playbook would accelerate growth.",
+      "Empowering local micro-creators would drive more organic views.",
+      "Automating content amplification would scale reach."
     ],
     testPlan: [
-      "Move permission requests to *after* the first successful task creation.",
-      "Add a 'template task' to the empty state so users aren't staring at a blank screen.",
-      "Implement a progressive onboarding checklist."
+      "Design localized content pillars and creator incentives.",
+      "Deploy AI-driven content moderation and trend identification.",
+      "Structure a regional launch playbook for rapid deployment."
     ],
     roadmap: [
-      "Sprint 1: Onboarding flow re-ordering.",
-      "Sprint 2: Empty state design & implementation.",
-      "Sprint 3: Permission prompt optimization."
+      "Phase 1: Market Research & Playbook Design.",
+      "Phase 2: Creator Network Seeding.",
+      "Phase 3: Scale & Optimization."
     ]
   }
 ];

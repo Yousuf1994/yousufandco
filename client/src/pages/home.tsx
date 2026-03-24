@@ -40,11 +40,11 @@ export default function Home() {
               
               <div className="space-y-4">
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-[1.05] tracking-tight">
-                  Stop Guessing. <br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">Start Scaling.</span>
+                  Stop the Waste in <br/>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">Your Marketing Budget.</span>
                 </h1>
                 <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-lg border-l-2 border-red-500 pl-6">
-                  I help solo founders and SMEs identify the <span className="text-white font-medium">single constraint</span> holding back their growth—and design a plan to address it in 30 days.
+                  I help growth-stage brands identify 'Invisible Leaks' in their data, optimize tech stacks, and automate revenue growth through AI-driven orchestration. Stop paying for 'Ghost Leads' and start scaling with precision.
                 </p>
               </div>
               
@@ -126,26 +126,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* C) Outcomes, not activity */}
+      {/* C) The Problem Section */}
       <section className="py-24 container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold leading-tight">Most consultants sell you <br/><span className="italic text-muted-foreground">time</span>. I sell clarity that drives <span className="text-primary underline decoration-primary/30 underline-offset-4">outcomes</span>.</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold leading-tight">Is Your Data Costing You More <br/><span className="italic text-muted-foreground">Than It's Making You?</span></h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              You don't need more dashboards. You don't need a 50-page audit that gathers dust. 
-              You need a decision. You need a direction. You need a result.
+              Most companies suffer from a 'Translation Gap.' Marketing, Tech, and Sales are speaking different languages, leaving your ROI in a black box. I bridge that gap.
             </p>
             <ul className="space-y-4 pt-4">
               {[
-                "From 'Gut Feeling' to Data-Backed Certainty",
-                "From 'Spray and Pray' to Targeted Scale",
-                "From 'Busy Work' to High-Leverage Execution"
+                { title: "Attribution Blindness:", desc: "Your dashboard says it's working, but your sales aren't moving." },
+                { title: "Tech Stack Bloat:", desc: "You're paying for enterprise tools (CDPs/CRMs) that aren't talking to each other." },
+                { title: "Inefficient Spend:", desc: "You are likely paying for leads you would have captured organically." }
               ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                <li key={i} className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-1 shrink-0">
                     <Check size={14} />
                   </div>
-                  <span className="font-medium text-foreground">{item}</span>
+                  <span className="font-medium text-foreground"><strong className="font-bold">{item.title}</strong> {item.desc}</span>
                 </li>
               ))}
             </ul>
@@ -158,9 +157,9 @@ export default function Home() {
           
           <div className="grid grid-cols-1 gap-6">
             {[
-              { from: "Channel confusion", to: "Budget clarity" },
-              { from: "Traffic growth", to: "Conversion lift focus" },
-              { from: "Dashboards", to: "Decisions" }
+              { from: "Siloed data", to: "Unified revenue truth" },
+              { from: "Bloated tech stack", to: "Lean, integrated systems" },
+              { from: "Guesswork ROI", to: "Predictable scale" }
             ].map((item, i) => (
               <Card key={i} className="border-l-4 border-l-primary shadow-sm hover:shadow-md transition-shadow">
                 <CardContent className="p-6 flex justify-between items-center">
@@ -258,7 +257,7 @@ export default function Home() {
       <section className="py-24 bg-secondary/30">
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-center mb-12">
-            <h2 className="text-3xl font-serif font-bold">Proven Results</h2>
+            <h2 className="text-3xl font-serif font-bold">Proven Impact at Scale.</h2>
             <Link href="/case-library"><a className="text-primary font-medium hover:underline decoration-1 underline-offset-4">View all cases</a></Link>
           </div>
           
@@ -300,9 +299,9 @@ export default function Home() {
       <section className="py-32 bg-[#0f172a] text-white text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-red-600/10 blur-3xl rounded-full scale-150 pointer-events-none" />
         <div className="container mx-auto px-6 relative z-10 max-w-4xl">
-          <h2 className="text-5xl md:text-6xl font-serif font-bold mb-8">One Decision Can Change Everything.</h2>
+          <h2 className="text-5xl md:text-6xl font-serif font-bold mb-8">Ready to find your 'Invisible Leaks'?</h2>
           <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
-            You are one constraint away from the growth you want. Let's find it and fix it.
+            Stop paying for 'Ghost Leads' and start scaling with precision. Let's find your invisible leaks.
           </p>
           
           <div className="max-w-3xl mx-auto bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-md">
@@ -366,7 +365,7 @@ export default function Home() {
                 </div>
 
                 <Button size="lg" className="w-full h-12 text-lg font-bold bg-red-600 hover:bg-red-700 shadow-xl shadow-red-900/20" asChild>
-                    <Link href="/contact">Schedule a call</Link>
+                    <Link href="/contact">Book a 15-Minute Diagnostic Call</Link>
                 </Button>
              </form>
              <p className="text-xs text-center text-white/40 mt-4">No spam. Unsubscribe anytime.</p>
