@@ -191,7 +191,7 @@ export const frameworkSteps = [
 export const faqs = [
   {
     question: "Who is this for?",
-    answer: "This is for Seed to Series B startups that have found some product-market fit but are struggling to scale efficiently. Typically, you have a product, some traction, but growth feels chaotic or unpredictable."
+    answer: "This is primarily for two types of companies:\n\n1. Seed to Series B startups that have found some product-market fit but are struggling to scale efficiently. Typically, you have a product, some traction, but growth feels chaotic or unpredictable.\n\n2. Established, traditional businesses that need a new way of doing things. You're looking to improve efficiencies, modernize operations, and drive real outcomes rather than just burning through marketing budgets."
   },
   {
     question: "What is the timeline?",

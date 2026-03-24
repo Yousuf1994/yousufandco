@@ -287,7 +287,7 @@ export default function Home() {
           {faqs.map((faq, i) => (
             <AccordionItem key={i} value={`item-${i}`}>
               <AccordionTrigger className="text-left font-medium text-lg py-4">{faq.question}</AccordionTrigger>
-              <AccordionContent className="text-muted-foreground pb-6 leading-relaxed">
+              <AccordionContent className="text-muted-foreground pb-6 leading-relaxed whitespace-pre-wrap">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
