@@ -21,7 +21,6 @@ export function Navbar() {
     { href: "/approach", label: "Approach" },
     { href: "/services", label: "Services" },
     { href: "/case-library", label: "Case Library" },
-    { href: "/insights", label: "Insights" },
     { href: "/contact", label: "Contact" },
   ];
 

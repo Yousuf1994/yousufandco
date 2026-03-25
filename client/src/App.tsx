@@ -9,7 +9,6 @@ import Approach from "@/pages/approach";
 import Services from "@/pages/services";
 import CaseLibrary from "@/pages/case-library";
 import CaseDetail from "@/pages/case-detail";
-import Insights from "@/pages/insights";
 import Contact from "@/pages/contact";
 
 function Router() {
@@ -20,7 +19,6 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/case-library" component={CaseLibrary} />
       <Route path="/case-library/:id" component={CaseDetail} />
-      <Route path="/insights" component={Insights} />
       <Route path="/contact" component={Contact} />
       <Route component={NotFound} />
     </Switch>
