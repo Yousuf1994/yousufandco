@@ -66,13 +66,13 @@ export default function Contact() {
             
             <div className="space-y-8">
                <div className="bg-secondary/30 p-6 rounded-xl border border-border">
-                 <h3 className="font-bold mb-2">Not ready to apply?</h3>
+                 <h3 className="font-bold mb-2">Want to reach out?</h3>
                  <p className="text-muted-foreground mb-4 text-sm">You can email me directly or connect on LinkedIn.</p>
                  <div className="flex flex-col gap-3">
-                   <a href="mailto:hello@example.com" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors font-medium">
-                     <Mail size={18} /> hello@strategicgrowth.com
+                   <a href="mailto:yousuf.workspace@gmail.com" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors font-medium">
+                     <Mail size={18} /> yousuf.workspace@gmail.com
                    </a>
-                   <a href="#" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors font-medium">
+                   <a href="https://www.linkedin.com/in/yousuf-mukhtar/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors font-medium">
                      <Linkedin size={18} /> LinkedIn Profile
                    </a>
                  </div>
