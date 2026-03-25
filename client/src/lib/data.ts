@@ -60,103 +60,43 @@ export interface CaseStudy {
   id: string;
   title: string;
   category: string;
-  description: string;
-  metrics?: string;
-  isSample: boolean;
-  context: string;
-  signals: string[];
-  hypotheses: string[];
-  testPlan: string[];
-  roadmap: string[];
+  challenge: string;
+  solution: string;
+  result: string;
 }
 
 export const caseStudies: CaseStudy[] = [
   {
-    id: "auto-vendor",
-    title: "Slashed marketing analytics spend by 40%",
+    id: "auto-revenue",
+    title: "Global Automotive Revenue Efficiency",
     category: "Automotive",
-    description: "Through strategic vendor rationalization for a global automotive brand.",
-    metrics: "Spend -40% → Same Analytics Quality",
-    isSample: true,
-    context: "A global automotive brand was paying for redundant enterprise analytics tools.",
-    signals: [
-      "Overlapping CDP and CRM capabilities",
-      "Low utilization of premium features",
-      "High licensing costs"
-    ],
-    hypotheses: [
-      "Consolidating tools could reduce costs without impacting data fidelity.",
-      "The team was only using 20% of the tools they paid for.",
-      "Vendor overlap was causing confusion, not clarity."
-    ],
-    testPlan: [
-      "Audit all existing marketing tech contracts and usage.",
-      "Map required capabilities against core tools.",
-      "Negotiate exits or downgrades for unused software."
-    ],
-    roadmap: [
-      "Month 1: Vendor Audit.",
-      "Month 2: Capability Mapping.",
-      "Month 3: Implementation & Consolidation."
-    ]
+    challenge: "A major automotive brand faced a fragmented marketing tech stack and 'invisible' attribution gaps during a high-stakes regional launch.",
+    solution: "Led the digital Go-to-Market (GTM) strategy by applying funnel diagnostics and CPA-based optimization to reallocate spend across regional markets.",
+    result: "Reduced the marketing analytics budget by ~40% through vendor rationalization while improving media efficiency by 5%."
   },
   {
-    id: "attribution-signal",
-    title: "Improved attribution signal quality by 11%",
-    category: "E-commerce",
-    description: "Leading to a measurable 2% increase in digitally influenced sales.",
-    metrics: "Signal +11% → Sales +2%",
-    isSample: true,
-    context: "A brand had 'Attribution Blindness' leading to inefficient ad spend.",
-    signals: [
-      "Sales figures didn't match platform dashboards",
-      "High percentage of 'Direct' traffic masking true sources",
-      "Rising CAC across paid channels"
-    ],
-    hypotheses: [
-      "First-party data wasn't being correctly passed back to ad platforms.",
-      "Identity resolution was failing across devices.",
-      "Multi-touch attribution models were misconfigured."
-    ],
-    testPlan: [
-      "Implement server-side tracking via CAPI.",
-      "Fix identity resolution gaps in the CRM.",
-      "Calibrate attribution models to match backend sales data."
-    ],
-    roadmap: [
-      "Month 1: Tracking infrastructure overhaul.",
-      "Month 2: Identity mapping.",
-      "Month 3: Attribution model training."
-    ]
+    id: "identity-resolution",
+    title: "Identity Resolution & Attribution Accuracy",
+    category: "Data & Analytics",
+    challenge: "Digital media impact on vehicle sales was difficult to measure accurately due to poor attribution signal quality.",
+    solution: "Implemented a CDP-based identity matching framework to bridge the gap between digital intent and physical sales.",
+    result: "Improved attribution signal quality by 11% and drove a 2% increase in digitally influenced sales."
   },
   {
-    id: "tiktok-gtm",
-    title: "Orchestrated regional GTM strategies",
+    id: "content-growth",
+    title: "Large-Scale Content & Partnership Growth",
     category: "Social Media",
-    description: "For platforms like TikTok, driving billions of views and millions in follower growth.",
-    metrics: "Billions of views → Millions of followers",
-    isSample: true,
-    context: "A global platform needed to localize and accelerate their GTM strategy.",
-    signals: [
-      "Slow adoption in key emerging markets",
-      "Content not resonating with local nuances",
-      "High creator acquisition cost"
-    ],
-    hypotheses: [
-      "A localized, culturally relevant GTM playbook would accelerate growth.",
-      "Empowering local micro-creators would drive more organic views.",
-      "Automating content amplification would scale reach."
-    ],
-    testPlan: [
-      "Design localized content pillars and creator incentives.",
-      "Deploy AI-driven content moderation and trend identification.",
-      "Structure a regional launch playbook for rapid deployment."
-    ],
-    roadmap: [
-      "Phase 1: Market Research & Playbook Design.",
-      "Phase 2: Creator Network Seeding.",
-      "Phase 3: Scale & Optimization."
-    ]
+    challenge: "A leading social platform needed to scale high-intent sports content and translate partnerships into measurable ad products.",
+    solution: "Architected strategic partnerships with premium publishers and integrated CPA benchmarks directly into media packages.",
+    result: "Generated 6 Billion views for a single activation and boosted viewership by 50% across South Asian markets."
+  },
+  {
+    id: "product-adoption",
+    title: "High-Velocity Product Adoption",
+    category: "SaaS",
+    challenge: "Facing high market entry barriers and competitor saturation for complex technical SaaS solutions.",
+    solution: "Pivoted the sales strategy from 'feature-selling' to value-based consulting and deep-dive cost-benefit analysis.",
+    result: "Ranked Top 10 globally for product adoption and secured the #2 all-time sales record for two consecutive months."
   }
 ];
 
