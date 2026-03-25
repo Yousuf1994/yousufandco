@@ -20,7 +20,7 @@ export default function Approach() {
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
             Most growth problems aren't traffic problems—they're system problems. 
-            My 5-step framework identifies the bottleneck so we don't waste time optimizing the wrong thing.
+            My 4-step framework identifies the bottleneck so we don't waste time optimizing the wrong thing.
           </p>
         </div>
       </section>
