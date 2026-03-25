@@ -35,7 +35,7 @@ export default function Home() {
             <div className="space-y-8 animate-in slide-in-from-bottom-5 duration-700 fade-in">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm">
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                <span className="text-xs font-medium tracking-wide uppercase text-white/80">Accepting New Clients for Q4</span>
+                <span className="text-xs font-medium tracking-wide uppercase text-white/80">Accepting New Clients</span>
               </div>
               
               <div className="space-y-4">
