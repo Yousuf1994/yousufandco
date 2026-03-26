@@ -7,10 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { ArrowRight, Check, BarChart2, TrendingUp, Target, Layers, ArrowUpRight, Play } from "lucide-react";
 import { Link } from "wouter";
 import { services, frameworkSteps, caseStudies, faqs } from "@/lib/data";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+import { HubSpotForm } from "@/components/HubSpotForm";
 
 export default function Home() {
   return (
@@ -183,7 +180,7 @@ export default function Home() {
                <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">How we work together</h2>
                <p className="text-white/60">Three ways to engage. No hourly billing. No ambiguous scope.</p>
             </div>
-            <Link href="/services"><a className="text-white font-medium hover:underline decoration-1 underline-offset-4 hidden md:block">View detailed services</a></Link>
+            <Link href="/services" className="text-white font-medium hover:underline decoration-1 underline-offset-4 hidden md:block">View detailed services</Link>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -258,22 +255,20 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-serif font-bold">Proven Impact at Scale.</h2>
-            <Link href="/case-library"><a className="text-primary font-medium hover:underline decoration-1 underline-offset-4">View all cases</a></Link>
+            <Link href="/case-library" className="text-primary font-medium hover:underline decoration-1 underline-offset-4">View all cases</Link>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {caseStudies.map((study) => (
-              <Link key={study.id} href={`/case-library`}>
-                <a className="group block bg-background border border-border rounded-xl p-8 hover:shadow-lg transition-all duration-300">
+              <Link key={study.id} href={`/case-library`} className="group block bg-background border border-border rounded-xl p-8 hover:shadow-lg transition-all duration-300">
                   <div className="flex justify-between items-start mb-6">
                     <Badge variant="outline">{study.category}</Badge>
                     <ArrowUpRight className="text-muted-foreground group-hover:text-primary transition-colors" size={20} />
                   </div>
                   <h3 className="text-xl font-bold mb-4 font-serif group-hover:text-primary transition-colors">{study.title}</h3>
                   <div className="p-4 bg-secondary/50 rounded-lg border border-border/50">
-                    <p className="text-sm font-medium text-foreground">{study.metrics}</p>
+                    <p className="text-sm font-medium text-foreground">{study.result}</p>
                   </div>
-                </a>
               </Link>
             ))}
           </div>
@@ -305,12 +300,11 @@ export default function Home() {
           </p>
           
           <div className="max-w-3xl mx-auto bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-md">
-             <div 
-               className="hs-form-frame min-h-[500px]" 
-               data-region="eu1" 
-               data-form-id="0979f7c7-197c-4fd2-a45b-bc4e00bbf88e" 
-               data-portal-id="148109148"
-             ></div>
+             <HubSpotForm 
+               region="eu1" 
+               portalId="148109148" 
+               formId="0979f7c7-197c-4fd2-a45b-bc4e00bbf88e" 
+             />
              <p className="text-xs text-center text-white/40 mt-4">No spam. Unsubscribe anytime.</p>
           </div>
 

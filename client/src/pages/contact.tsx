@@ -1,52 +1,10 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { useToast } from "@/hooks/use-toast";
 import { Mail, Linkedin } from "lucide-react";
-
-const formSchema = z.object({
-  fullName: z.string().min(2, "Full Name is required"),
-  email: z.string().email("Invalid email address"),
-  phone: z.string().min(5, "Contact number is required"),
-  companyName: z.string().min(1, "Company name is required"),
-  teamSize: z.string({ required_error: "Please select team size" }),
-  revenue: z.string({ required_error: "Please select annual revenue" }),
-  challenge: z.string().min(10, "Please tell me a bit about your challenge"),
-});
+import { HubSpotForm } from "@/components/HubSpotForm";
 
 export default function Contact() {
-  const { toast } = useToast();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      fullName: "",
-      email: "",
-      phone: "",
-      companyName: "",
-      teamSize: "",
-      revenue: "",
-      challenge: "",
-    },
-  });
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: "Request Received",
-      description: "Thanks for reaching out. I'll review your details and get back to you within 48 hours.",
-    });
-    form.reset();
-  }
-
   return (
     <div className="min-h-screen bg-background font-sans">
       <Navbar />
@@ -84,12 +42,11 @@ export default function Contact() {
           <div>
             <Card className="shadow-lg border-border">
               <CardContent className="p-8" id="contact-form-container">
-                <div 
-                  className="hs-form-frame min-h-[500px]" 
-                  data-region="eu1" 
-                  data-form-id="0979f7c7-197c-4fd2-a45b-bc4e00bbf88e" 
-                  data-portal-id="148109148"
-                ></div>
+                <HubSpotForm 
+                  region="eu1" 
+                  portalId="148109148" 
+                  formId="0979f7c7-197c-4fd2-a45b-bc4e00bbf88e" 
+                />
               </CardContent>
             </Card>
           </div>
