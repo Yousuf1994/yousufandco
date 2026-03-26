@@ -7,7 +7,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { ArrowRight, Check, BarChart2, TrendingUp, Target, Layers, ArrowUpRight, Play } from "lucide-react";
 import { Link } from "wouter";
 import { services, frameworkSteps, caseStudies, faqs } from "@/lib/data";
-import { HubSpotForm } from "@/components/HubSpotForm";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function Home() {
   return (
@@ -180,7 +183,7 @@ export default function Home() {
                <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">How we work together</h2>
                <p className="text-white/60">Three ways to engage. No hourly billing. No ambiguous scope.</p>
             </div>
-            <Link href="/services" className="text-white font-medium hover:underline decoration-1 underline-offset-4 hidden md:block">View detailed services</Link>
+            <Link href="/services"><a className="text-white font-medium hover:underline decoration-1 underline-offset-4 hidden md:block">View detailed services</a></Link>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -255,20 +258,22 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-serif font-bold">Proven Impact at Scale.</h2>
-            <Link href="/case-library" className="text-primary font-medium hover:underline decoration-1 underline-offset-4">View all cases</Link>
+            <Link href="/case-library"><a className="text-primary font-medium hover:underline decoration-1 underline-offset-4">View all cases</a></Link>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {caseStudies.map((study) => (
-              <Link key={study.id} href={`/case-library`} className="group block bg-background border border-border rounded-xl p-8 hover:shadow-lg transition-all duration-300">
+              <Link key={study.id} href={`/case-library`}>
+                <a className="group block bg-background border border-border rounded-xl p-8 hover:shadow-lg transition-all duration-300">
                   <div className="flex justify-between items-start mb-6">
                     <Badge variant="outline">{study.category}</Badge>
                     <ArrowUpRight className="text-muted-foreground group-hover:text-primary transition-colors" size={20} />
                   </div>
                   <h3 className="text-xl font-bold mb-4 font-serif group-hover:text-primary transition-colors">{study.title}</h3>
                   <div className="p-4 bg-secondary/50 rounded-lg border border-border/50">
-                    <p className="text-sm font-medium text-foreground">{study.result}</p>
+                    <p className="text-sm font-medium text-foreground">{study.metrics}</p>
                   </div>
+                </a>
               </Link>
             ))}
           </div>
@@ -299,13 +304,71 @@ export default function Home() {
             Stop paying for 'Ghost Leads' and start scaling with precision. Let's find your invisible leaks.
           </p>
           
-          <div className="max-w-3xl mx-auto bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-md">
-             <HubSpotForm 
-               region="eu1" 
-               portalId="148109148" 
-               formId="0979f7c7-197c-4fd2-a45b-bc4e00bbf88e" 
-             />
-             <p className="text-xs text-center text-white/40 mt-4">No spam. Unsubscribe anytime.</p>
+          <div className="max-w-3xl mx-auto bg-[#1e293b] border border-white/20 p-8 rounded-2xl shadow-2xl">
+             <form className="space-y-4 text-left">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                   <div className="space-y-2">
+                      <Label htmlFor="name" className="text-white font-medium">Full Name</Label>
+                      <Input id="name" placeholder="John Doe" className="bg-[#0f172a] border-white/20 text-white placeholder:text-white/40 focus:border-red-500 focus:ring-red-500" />
+                   </div>
+                   <div className="space-y-2">
+                      <Label htmlFor="email" className="text-white font-medium">Email</Label>
+                      <Input id="email" type="email" placeholder="john@company.com" className="bg-[#0f172a] border-white/20 text-white placeholder:text-white/40 focus:border-red-500 focus:ring-red-500" />
+                   </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                   <div className="space-y-2">
+                      <Label htmlFor="contact" className="text-white font-medium">Contact Number</Label>
+                      <Input id="contact" placeholder="+1 (555) 000-0000" className="bg-[#0f172a] border-white/20 text-white placeholder:text-white/40 focus:border-red-500 focus:ring-red-500" />
+                   </div>
+                   <div className="space-y-2">
+                      <Label htmlFor="company" className="text-white font-medium">Company Name</Label>
+                      <Input id="company" placeholder="Acme Inc." className="bg-[#0f172a] border-white/20 text-white placeholder:text-white/40 focus:border-red-500 focus:ring-red-500" />
+                   </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                   <div className="space-y-2">
+                      <Label htmlFor="size" className="text-white font-medium">Team Size</Label>
+                      <Select>
+                        <SelectTrigger className="bg-[#0f172a] border-white/20 text-white focus:ring-red-500">
+                          <SelectValue placeholder="Select size" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-[#1e293b] border-white/20 text-white">
+                          <SelectItem value="1-10">1-10</SelectItem>
+                          <SelectItem value="11-50">11-50</SelectItem>
+                          <SelectItem value="51-200">51-200</SelectItem>
+                          <SelectItem value="200+">200+</SelectItem>
+                        </SelectContent>
+                      </Select>
+                   </div>
+                   <div className="space-y-2">
+                      <Label htmlFor="revenue" className="text-white font-medium">Annual Revenue</Label>
+                      <Select>
+                        <SelectTrigger className="bg-[#0f172a] border-white/20 text-white focus:ring-red-500">
+                          <SelectValue placeholder="Select revenue" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-[#1e293b] border-white/20 text-white">
+                          <SelectItem value="<1M">&lt; $1M</SelectItem>
+                          <SelectItem value="1M-5M">$1M - $5M</SelectItem>
+                          <SelectItem value="5M-20M">$5M - $20M</SelectItem>
+                          <SelectItem value="20M+">$20M+</SelectItem>
+                        </SelectContent>
+                      </Select>
+                   </div>
+                </div>
+
+                <div className="space-y-2">
+                   <Label htmlFor="challenge" className="text-white font-medium">What is your biggest challenge?</Label>
+                   <Textarea id="challenge" placeholder="Tell me about your bottlenecks..." className="bg-[#0f172a] border-white/20 text-white placeholder:text-white/40 min-h-[100px] focus:border-red-500 focus:ring-red-500" />
+                </div>
+
+                <Button size="lg" className="w-full h-12 text-lg font-bold bg-red-600 hover:bg-red-700 shadow-xl shadow-red-900/20 text-white" asChild>
+                    <Link href="/contact">Book a 15-Minute Diagnostic Call</Link>
+                </Button>
+             </form>
+             <p className="text-xs text-center text-white/60 mt-4">No spam. Unsubscribe anytime.</p>
           </div>
 
           <p className="text-sm text-white/40 mt-12 italic">Limited spots available for this quarter.</p>
