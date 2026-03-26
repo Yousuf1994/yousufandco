@@ -38,13 +38,60 @@ export default function Contact() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: "Request Received",
-      description: "Thanks for reaching out. I'll review your details and get back to you within 48 hours.",
-    });
-    form.reset();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    try {
+      const portalId = "148109148";
+      const formId = "0979f7c7-197c-4fd2-a45b-bc4e00bbf88e";
+      const url = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`;
+
+      const nameParts = values.fullName.trim().split(" ");
+      const firstName = nameParts[0];
+      const lastName = nameParts.slice(1).join(" ");
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fields: [
+            { name: "email", value: values.email },
+            { name: "firstname", value: firstName },
+            { name: "lastname", value: lastName },
+            { name: "phone", value: values.phone },
+            { name: "company", value: values.companyName },
+            { name: "numemployees", value: values.teamSize },
+            { name: "annualrevenue", value: values.revenue },
+            { name: "message", value: values.challenge },
+          ],
+          context: {
+            pageUri: window.location.href,
+            pageName: "Contact Page",
+          },
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Request Received",
+          description: "Thanks for reaching out. I'll review your details and get back to you within 48 hours.",
+        });
+        form.reset();
+      } else {
+        throw new Error("Failed to submit");
+      }
+    } catch (error) {
+      toast({
+        title: "Submission Error",
+        description: "There was a problem sending your request. Please email me directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (

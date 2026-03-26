@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -11,8 +12,83 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 export default function Home() {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  async function handleHomeFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const formData = new FormData(e.currentTarget);
+    const values = {
+      fullName: formData.get("fullName") as string || "",
+      email: formData.get("email") as string || "",
+      phone: formData.get("phone") as string || "",
+      companyName: formData.get("companyName") as string || "",
+      teamSize: formData.get("teamSize") as string || "",
+      revenue: formData.get("revenue") as string || "",
+      challenge: formData.get("challenge") as string || ""
+    };
+
+    try {
+      const portalId = "148109148";
+      const formId = "0979f7c7-197c-4fd2-a45b-bc4e00bbf88e";
+      const url = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`;
+
+      const nameParts = values.fullName.trim().split(" ");
+      const firstName = nameParts[0];
+      const lastName = nameParts.slice(1).join(" ");
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fields: [
+            { name: "email", value: values.email },
+            { name: "firstname", value: firstName },
+            { name: "lastname", value: lastName },
+            { name: "phone", value: values.phone },
+            { name: "company", value: values.companyName },
+            { name: "numemployees", value: values.teamSize },
+            { name: "annualrevenue", value: values.revenue },
+            { name: "message", value: values.challenge },
+          ],
+          context: {
+            pageUri: window.location.href,
+            pageName: "Home Page",
+          },
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Request Received",
+          description: "Thanks for reaching out. I'll review your details and get back to you within 48 hours.",
+        });
+        (e.target as HTMLFormElement).reset();
+      } else {
+        throw new Error("Failed to submit");
+      }
+    } catch (error) {
+      toast({
+        title: "Submission Error",
+        description: "There was a problem sending your request. Please email me directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   return (
     <div className="min-h-screen bg-background font-sans">
       <Navbar />
@@ -305,33 +381,33 @@ export default function Home() {
           </p>
           
           <div className="max-w-3xl mx-auto bg-[#1e293b] border border-white/20 p-8 rounded-2xl shadow-2xl">
-             <form className="space-y-4 text-left">
+             <form onSubmit={handleHomeFormSubmit} className="space-y-4 text-left">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                    <div className="space-y-2">
                       <Label htmlFor="name" className="text-white font-medium">Full Name</Label>
-                      <Input id="name" placeholder="John Doe" className="bg-[#0f172a] border-white/20 text-white placeholder:text-white/40 focus:border-red-500 focus:ring-red-500" />
+                      <Input id="name" name="fullName" required placeholder="John Doe" className="bg-[#0f172a] border-white/20 text-white placeholder:text-white/40 focus:border-red-500 focus:ring-red-500" />
                    </div>
                    <div className="space-y-2">
                       <Label htmlFor="email" className="text-white font-medium">Email</Label>
-                      <Input id="email" type="email" placeholder="john@company.com" className="bg-[#0f172a] border-white/20 text-white placeholder:text-white/40 focus:border-red-500 focus:ring-red-500" />
+                      <Input id="email" name="email" type="email" required placeholder="john@company.com" className="bg-[#0f172a] border-white/20 text-white placeholder:text-white/40 focus:border-red-500 focus:ring-red-500" />
                    </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                    <div className="space-y-2">
                       <Label htmlFor="contact" className="text-white font-medium">Contact Number</Label>
-                      <Input id="contact" placeholder="+1 (555) 000-0000" className="bg-[#0f172a] border-white/20 text-white placeholder:text-white/40 focus:border-red-500 focus:ring-red-500" />
+                      <Input id="contact" name="phone" required placeholder="+1 (555) 000-0000" className="bg-[#0f172a] border-white/20 text-white placeholder:text-white/40 focus:border-red-500 focus:ring-red-500" />
                    </div>
                    <div className="space-y-2">
                       <Label htmlFor="company" className="text-white font-medium">Company Name</Label>
-                      <Input id="company" placeholder="Acme Inc." className="bg-[#0f172a] border-white/20 text-white placeholder:text-white/40 focus:border-red-500 focus:ring-red-500" />
+                      <Input id="company" name="companyName" required placeholder="Acme Inc." className="bg-[#0f172a] border-white/20 text-white placeholder:text-white/40 focus:border-red-500 focus:ring-red-500" />
                    </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                    <div className="space-y-2">
                       <Label htmlFor="size" className="text-white font-medium">Team Size</Label>
-                      <Select>
+                      <Select name="teamSize" required>
                         <SelectTrigger className="bg-[#0f172a] border-white/20 text-white focus:ring-red-500">
                           <SelectValue placeholder="Select size" />
                         </SelectTrigger>
@@ -345,7 +421,7 @@ export default function Home() {
                    </div>
                    <div className="space-y-2">
                       <Label htmlFor="revenue" className="text-white font-medium">Annual Revenue</Label>
-                      <Select>
+                      <Select name="revenue" required>
                         <SelectTrigger className="bg-[#0f172a] border-white/20 text-white focus:ring-red-500">
                           <SelectValue placeholder="Select revenue" />
                         </SelectTrigger>
@@ -361,11 +437,11 @@ export default function Home() {
 
                 <div className="space-y-2">
                    <Label htmlFor="challenge" className="text-white font-medium">What is your biggest challenge?</Label>
-                   <Textarea id="challenge" placeholder="Tell me about your bottlenecks..." className="bg-[#0f172a] border-white/20 text-white placeholder:text-white/40 min-h-[100px] focus:border-red-500 focus:ring-red-500" />
+                   <Textarea id="challenge" name="challenge" required placeholder="Tell me about your bottlenecks..." className="bg-[#0f172a] border-white/20 text-white placeholder:text-white/40 min-h-[100px] focus:border-red-500 focus:ring-red-500" />
                 </div>
 
-                <Button size="lg" className="w-full h-12 text-lg font-bold bg-red-600 hover:bg-red-700 shadow-xl shadow-red-900/20 text-white" asChild>
-                    <Link href="/contact">Book a 15-Minute Diagnostic Call</Link>
+                <Button type="submit" disabled={isSubmitting} size="lg" className="w-full h-12 text-lg font-bold bg-red-600 hover:bg-red-700 shadow-xl shadow-red-900/20 text-white">
+                    {isSubmitting ? "Sending..." : "Book a 15-Minute Diagnostic Call"}
                 </Button>
              </form>
              <p className="text-xs text-center text-white/60 mt-4">No spam. Unsubscribe anytime.</p>
