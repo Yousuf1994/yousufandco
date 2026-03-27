@@ -34,28 +34,26 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link href="/">
-          <a className="font-serif font-bold text-xl tracking-tight text-foreground hover:opacity-80 transition-opacity">
-            Strategic Growth<span className="text-primary">.</span>
-          </a>
+        <Link href="/" className="font-serif font-bold text-xl tracking-tight text-foreground hover:opacity-80 transition-opacity">
+          Strategic Growth<span className="text-primary">.</span>
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href}>
-              <a 
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  location === link.href ? "text-primary" : "text-muted-foreground"
-                )}
-              >
-                {link.label}
-              </a>
+            <Link 
+              key={link.href} 
+              href={link.href}
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                location === link.href ? "text-primary" : "text-muted-foreground"
+              )}
+            >
+              {link.label}
             </Link>
           ))}
           <Button size="sm" className="ml-4 font-medium" asChild>
-            <Link href="/contact">Schedule a call</Link>
+            <Link href="/contact"><span className="cursor-pointer">Schedule a call</span></Link>
           </Button>
         </div>
 
@@ -73,21 +71,21 @@ export function Navbar() {
         <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border p-6 shadow-lg animate-in slide-in-from-top-5">
           <div className="flex flex-col gap-4">
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href}>
-                <a 
-                  className={cn(
-                    "text-lg font-medium transition-colors hover:text-primary",
-                    location === link.href ? "text-primary" : "text-muted-foreground"
-                  )}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
+              <Link 
+                key={link.href} 
+                href={link.href}
+                className={cn(
+                  "text-lg font-medium transition-colors hover:text-primary",
+                  location === link.href ? "text-primary" : "text-muted-foreground"
+                )}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.label}
               </Link>
             ))}
             <div className="pt-4 border-t border-border">
               <Button className="w-full" asChild>
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>Consult for Diagnostic</Link>
+                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}><span className="cursor-pointer">Consult for Diagnostic</span></Link>
               </Button>
             </div>
           </div>

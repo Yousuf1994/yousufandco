@@ -6,10 +6,8 @@ export function Footer() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
-            <Link href="/">
-              <a className="font-serif font-bold text-xl tracking-tight text-foreground">
-                Strategic Growth<span className="text-primary">.</span>
-              </a>
+            <Link href="/" className="font-serif font-bold text-xl tracking-tight text-foreground">
+              Strategic Growth<span className="text-primary">.</span>
             </Link>
             <p className="text-sm text-muted-foreground mt-2 max-w-xs">
               Decision intelligence and growth strategy for scaling companies.
@@ -19,9 +17,9 @@ export function Footer() {
           <div className="flex flex-col md:flex-row gap-8 md:gap-12">
             <div className="flex flex-col gap-3">
               <span className="font-medium text-sm text-foreground">Navigate</span>
-              <Link href="/approach"><a className="text-sm text-muted-foreground hover:text-primary transition-colors">Approach</a></Link>
-              <Link href="/services"><a className="text-sm text-muted-foreground hover:text-primary transition-colors">Services</a></Link>
-              <Link href="/case-library"><a className="text-sm text-muted-foreground hover:text-primary transition-colors">Cases</a></Link>
+              <Link href="/approach"><span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">Approach</span></Link>
+              <Link href="/services"><span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">Services</span></Link>
+              <Link href="/case-library"><span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">Cases</span></Link>
             </div>
             
             <div className="flex flex-col gap-3">

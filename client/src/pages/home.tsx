@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState, FormEvent } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -20,9 +20,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 
 export default function Home() {
   const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  async function handleHomeFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleHomeFormSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsSubmitting(true);
     
@@ -126,11 +126,13 @@ export default function Home() {
               
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button size="lg" className="h-14 px-8 text-base bg-white text-[#0f172a] hover:bg-white/90 font-bold tracking-wide shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all transform hover:scale-105" asChild>
-                  <Link href="/contact">Consult for Diagnostic</Link>
+                  <Link href="/contact"><span className="cursor-pointer">Consult for Diagnostic</span></Link>
                 </Button>
                 <Button size="lg" variant="outline" className="h-14 px-8 text-base border-white/20 text-white hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 group" asChild>
                   <Link href="/case-library">
-                    <Play size={16} className="fill-current" /> See Results
+                    <span className="flex items-center gap-2 cursor-pointer">
+                      <Play size={16} className="fill-current" /> See Results
+                    </span>
                   </Link>
                 </Button>
               </div>
@@ -226,7 +228,7 @@ export default function Home() {
             </ul>
             <div className="pt-6">
               <Button variant="link" className="text-primary p-0 h-auto font-bold text-lg" asChild>
-                <Link href="/case-library">Read my case studies <ArrowRight size={18} className="ml-2" /></Link>
+                <Link href="/case-library"><span className="flex items-center cursor-pointer">Read my case studies <ArrowRight size={18} className="ml-2" /></span></Link>
               </Button>
             </div>
           </div>
@@ -259,7 +261,7 @@ export default function Home() {
                <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">How we work together</h2>
                <p className="text-white/60">Three ways to engage. No hourly billing. No ambiguous scope.</p>
             </div>
-            <Link href="/services"><a className="text-white font-medium hover:underline decoration-1 underline-offset-4 hidden md:block">View detailed services</a></Link>
+            <Link href="/services"><span className="text-white font-medium hover:underline decoration-1 underline-offset-4 hidden md:block cursor-pointer">View detailed services</span></Link>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -281,7 +283,7 @@ export default function Home() {
                 </ul>
 
                 <Button className="w-full bg-white text-[#0f172a] hover:bg-white/90" asChild>
-                  <Link href="/contact">Schedule a call</Link>
+                  <Link href="/contact"><span className="cursor-pointer">Schedule a call</span></Link>
                 </Button>
               </div>
             ))}
@@ -309,7 +311,7 @@ export default function Home() {
             </div>
             
              <Button variant="outline" asChild>
-                <Link href="/approach">View detailed approach</Link>
+                <Link href="/approach"><span className="cursor-pointer">View detailed approach</span></Link>
              </Button>
           </div>
           
@@ -334,13 +336,13 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-serif font-bold">Proven Impact at Scale.</h2>
-            <Link href="/case-library"><a className="text-primary font-medium hover:underline decoration-1 underline-offset-4">View all cases</a></Link>
+            <Link href="/case-library"><span className="text-primary font-medium hover:underline decoration-1 underline-offset-4 cursor-pointer">View all cases</span></Link>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {caseStudies.map((study) => (
               <Link key={study.id} href={`/case-library`}>
-                <a className="group block bg-background border border-border rounded-xl p-8 hover:shadow-lg transition-all duration-300">
+                <span className="group block bg-background border border-border rounded-xl p-8 hover:shadow-lg transition-all duration-300 cursor-pointer">
                   <div className="flex justify-between items-start mb-6">
                     <Badge variant="outline">{study.category}</Badge>
                     <ArrowUpRight className="text-muted-foreground group-hover:text-primary transition-colors" size={20} />
@@ -349,7 +351,7 @@ export default function Home() {
                   <div className="p-4 bg-secondary/50 rounded-lg border border-border/50">
                     <p className="text-sm font-medium text-foreground">{study.result}</p>
                   </div>
-                </a>
+                </span>
               </Link>
             ))}
           </div>
