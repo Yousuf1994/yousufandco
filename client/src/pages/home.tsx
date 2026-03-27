@@ -347,7 +347,7 @@ export default function Home() {
                   </div>
                   <h3 className="text-xl font-bold mb-4 font-serif group-hover:text-primary transition-colors">{study.title}</h3>
                   <div className="p-4 bg-secondary/50 rounded-lg border border-border/50">
-                    <p className="text-sm font-medium text-foreground">{study.metrics}</p>
+                    <p className="text-sm font-medium text-foreground">{study.result}</p>
                   </div>
                 </a>
               </Link>
