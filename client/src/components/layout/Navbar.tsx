@@ -34,8 +34,8 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link href="/" className="font-serif font-bold text-xl tracking-tight text-foreground hover:opacity-80 transition-opacity">
-          Strategic Growth<span className="text-primary">.</span>
+        <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+          <img src="/images/logo-transparent.png" alt="Yousuf & Co. Logo" className="h-10 w-auto" />
         </Link>
 
         {/* Desktop Nav */}

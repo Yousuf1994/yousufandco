@@ -6,8 +6,8 @@ export function Footer() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
-            <Link href="/" className="font-serif font-bold text-xl tracking-tight text-foreground">
-              Strategic Growth<span className="text-primary">.</span>
+            <Link href="/" className="inline-block hover:opacity-80 transition-opacity">
+              <img src="/images/logo-transparent.png" alt="Yousuf & Co. Logo" className="h-10 w-auto mb-2" />
             </Link>
             <p className="text-sm text-muted-foreground mt-2 max-w-xs">
               Decision intelligence and growth strategy for scaling companies.
