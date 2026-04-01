@@ -143,7 +143,7 @@ export const faqs = [
   },
   {
     question: "How does pricing work?",
-    answer: "Engagements start at $5k for diagnostics. Advisory retainers are customized based on the level of involvement required."
+    answer: "Engagements start at $1000 for diagnostics. Advisory retainers are customized based on the level of involvement required."
   }
 ];
 
