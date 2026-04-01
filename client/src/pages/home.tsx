@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,15 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 export default function Home() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   async function handleHomeFormSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -116,8 +125,8 @@ export default function Home() {
               
               <div className="space-y-4">
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-[1.05] tracking-tight">
-                  Stop the Waste in <br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">Your Marketing Budget.</span>
+                  <span className={`transition-colors duration-700 ease-in-out ${isScrolled ? 'text-white/20' : 'text-white'}`}>Stop the Waste in</span> <br/>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">Your Budget.</span>
                 </h1>
                 <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-lg border-l-2 border-red-500 pl-6">
                   I help growth-stage brands identify 'Invisible Leaks' in their data, optimize tech stacks, and automate revenue growth through AI-driven orchestration. Stop paying for 'Ghost Leads' and start scaling with precision.
