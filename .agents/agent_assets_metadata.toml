@@ -1,0 +1,9 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "MYNya1HtUwf2Oy7SlV0Tz"
+uri = "file://site-summary.md"
+type = "text"
+title = "Yousuf & Co. — Site Content Summary"
+description = "A full summary of all content on the site: brand positioning, pages, services, case studies, FAQs, pricing, and contact details."
