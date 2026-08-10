@@ -44,84 +44,51 @@
   --color-chart-5: hsl(var(--chart-5));
   
   --font-sans: 'Inter', sans-serif;
-  --font-serif: 'Libre Baskerville', serif;
+  --font-serif: 'Inter', sans-serif;
   
   --radius: 0.25rem;
 }
 
 :root {
-  /* Elegant, Executive, Minimal Palette */
-  /* Background: Slightly warm off-white, not harsh white */
-  --background: 40 10% 98%; 
-  /* Foreground: Dark Charcoal, softer than black */
-  --foreground: 220 15% 15%;
+  /* Dark technical palette — AWS/Palantir aesthetic */
+  --background: 230 12% 7%;
+  --foreground: 0 0% 94%;
 
-  /* Card: White with subtle border */
-  --card: 0 0% 100%;
-  --card-foreground: 220 15% 15%;
+  --card: 224 14% 10%;
+  --card-foreground: 0 0% 94%;
 
-  /* Popover */
-  --popover: 0 0% 100%;
-  --popover-foreground: 220 15% 15%;
+  --popover: 224 14% 10%;
+  --popover-foreground: 0 0% 94%;
 
-  /* Primary: Muted Deep Slate/Indigo - The "Distinct Accent" */
-  --primary: 215 30% 35%;
+  /* Primary: Teal — AI/data elements */
+  --primary: 162 69% 37%;
   --primary-foreground: 0 0% 98%;
 
-  /* Secondary: Very light beige/warm grey for backgrounds of secondary sections */
-  --secondary: 40 10% 94%;
-  --secondary-foreground: 220 15% 15%;
+  /* Secondary: dark surface */
+  --secondary: 224 14% 13%;
+  --secondary-foreground: 0 0% 94%;
 
-  /* Muted: Text for subtitles */
-  --muted: 220 10% 94%;
-  --muted-foreground: 220 10% 45%;
+  /* Muted */
+  --muted: 215 14% 20%;
+  --muted-foreground: 218 11% 55%;
 
-  /* Accent: For hover states, slightly lighter primary */
-  --accent: 215 30% 92%;
-  --accent-foreground: 215 30% 30%;
+  /* Accent: purple */
+  --accent: 245 43% 50%;
+  --accent-foreground: 0 0% 98%;
 
   /* Destructive */
-  --destructive: 0 60% 50%;
+  --destructive: 15 69% 36%;
   --destructive-foreground: 0 0% 98%;
 
-  /* Border: Subtle borders */
-  --border: 220 10% 88%;
-  --input: 220 10% 88%;
-  --ring: 215 30% 35%;
+  /* Border */
+  --border: 215 20% 17%;
+  --input: 215 20% 17%;
+  --ring: 162 69% 37%;
 
   --radius: 0.375rem;
 }
 
-.dark {
-  /* Dark mode - Deep "Executive" Dark Blue/Grey */
-  --background: 220 15% 10%;
-  --foreground: 40 10% 90%;
-
-  --card: 220 15% 13%;
-  --card-foreground: 40 10% 90%;
-
-  --popover: 220 15% 13%;
-  --popover-foreground: 40 10% 90%;
-
-  --primary: 215 40% 50%; /* Lighter for contrast in dark mode */
-  --primary-foreground: 220 15% 10%;
-
-  --secondary: 220 15% 16%;
-  --secondary-foreground: 40 10% 90%;
-
-  --muted: 220 15% 20%;
-  --muted-foreground: 220 10% 65%;
-
-  --accent: 215 30% 20%;
-  --accent-foreground: 215 40% 80%;
-
-  --destructive: 0 62% 30%;
-  --destructive-foreground: 0 0% 98%;
-
-  --border: 220 15% 20%;
-  --input: 220 15% 20%;
-  --ring: 215 40% 50%;
-}
+/* No separate dark mode needed — site is dark-first */
 
 @layer base {
   * {
@@ -131,7 +98,7 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-bold tracking-tight text-foreground;
+    @apply font-sans font-medium tracking-tight text-foreground;
   }
 }
 
@@ -140,12 +107,17 @@
     text-wrap: balance;
   }
   
-  /* Custom Grid Background Pattern */
   .bg-grid-pattern {
     background-image: 
-      linear-gradient(to right, hsla(var(--border), 0.5) 1px, transparent 1px),
-      linear-gradient(to bottom, hsla(var(--border), 0.5) 1px, transparent 1px);
+      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
     background-size: 40px 40px;
-    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
   }
+
+  .text-teal { color: #1d9e75; }
+  .text-purple { color: #534ab7; }
+  .text-coral { color: #993c1d; }
+  .border-teal { border-color: #1d9e75; }
+  .bg-teal\/10 { background-color: rgba(29,158,117,0.1); }
+  .bg-purple\/10 { background-color: rgba(83,74,183,0.1); }
 }

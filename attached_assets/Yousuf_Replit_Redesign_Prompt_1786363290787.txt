@@ -1,0 +1,323 @@
+REPLIT SITE REDESIGN PROMPT — YOUSUFANDCO.COM
+═══════════════════════════════════════════════════════════
+
+CONTEXT
+I need a redesign and positioning of this site. Do NOT rebuild from scratch. Keep all existing routing, page structure, HubSpot form integration, and component architecture. Only change: copy, visual design, section content, and add two new sections (Products, Ask Me chatbot).
+
+IDENTITY & POSITIONING
+Name: Yousuf Mukhtar
+Title: Forward Deployed AI Product Manager
+Location: Dubai, UAE
+Email: yousufmukhtar05@gmail.com
+LinkedIn: linkedin.com/in/yousuf-mukhtar
+Calendly: https://calendly.com/yousuf-workspace/30-minute-discovery-call
+
+Core positioning (use this to guide ALL copy decisions):
+I identify where AI and data can create commercial value for a business, design the solution architecture, and drive it from concept to deployed product. Not as a developer — as a diagnostician. I sit between engineering, data, agencies, and executive leadership. I go deep enough technically to have real conversations with engineers, and commercial enough to keep every decision tied to revenue or efficiency.
+
+═══════════════════════════════════════════════════════════
+VISUAL DESIGN — APPLY GLOBALLY
+═══════════════════════════════════════════════════════════
+
+Color palette:
+- Background: #0f1117 (near black)
+- Surface cards: #141820
+- Border: #1f2937
+- Primary accent: #1d9e75 (teal — for AI/data elements)
+- Secondary accent: #534ab7 (purple — for product elements)
+- Coral accent: #993c1d (for activation/commercial elements)
+- Text primary: #f0f0f0
+- Text secondary: #9ca3af
+- Text muted: #4b5563
+
+Typography:
+- Headings: Clean modern sans-serif, weight 500
+- Body: 15-16px, line-height 1.7
+- Labels/tags: 10-11px uppercase letter-spacing
+
+Design tone: Dark, technical, intelligent. Think AWS architecture docs meets Palantir product site. NOT a generic SaaS template. Clean, considered, minimal decoration. Subtle radial gradients in hero background only. No heavy animations.
+
+Navigation: Keep existing nav structure but update labels:
+- About
+- Work (replaces "Approach" and "Case Library" — combine into one)
+- Services
+- Ask Me (new)
+- Contact
+CTA button in nav: "Book a call" → links to Calendly
+
+═══════════════════════════════════════════════════════════
+HOME PAGE (/)
+═══════════════════════════════════════════════════════════
+
+HERO SECTION
+Replace existing hero entirely.
+
+Small label above headline: "AVAILABLE FOR NEW ROLES & ENGAGEMENTS · DUBAI, UAE"
+Style: small pill badge, teal border, teal text
+
+Main headline (large, bold):
+"Most AI projects inside companies die between the idea and the build."
+
+Subheadline:
+"I work in that gap. Not as a developer — but as a diagnostician. I identify where AI can move the needle, design the solution architecture, and drive it from concept to deployed product by connecting the right people, tools, and data."
+
+Two CTA buttons:
+- Primary: "View my work" → scrolls to Work section or links to /work
+- Secondary: "Work with me" → scrolls to Services or links to /services
+
+Right side of hero: Professional photo of Yousuf (use existing photo from current site)
+
+Remove: "Stop the Waste in Your Budget" headline and all existing hero copy
+
+═══════════════════════════════════════════════════════════
+ABOUT SECTION (on home page, below hero)
+═══════════════════════════════════════════════════════════
+
+Section label: "ABOUT"
+Headline: "Some people are built to execute. I was built to understand."
+
+Body copy — use EXACTLY this text, split into paragraphs:
+
+"At 16, while most kids were memorizing formulas, I was losing sleep over the idea that gravity isn't a force — it's a bend in the fabric of spacetime. Einstein didn't just change physics. He changed how I thought about everything. That there is always a deeper truth underneath the obvious one. That the surface explanation is rarely the real one.
+
+I never became a physicist. But I never stopped being that kid.
+
+I grew up in Pakistan — a country of extraordinary talent and extraordinary challenge. Middle class family, no silver spoon, but an ambition that always outpaced my environment. I did a BBA at FAST-NUCES, one of Pakistan's top tech universities, and discovered something unexpected: I could take complex, tangled systems and make them legible to people who needed to act on them. That turned out to be more valuable than I knew.
+
+The career that followed was really one long search for the right arena for that skill. Sales taught me how decisions actually get made. Consulting taught me how to frame problems. TikTok taught me how platforms think — and one day, they relocated me to Dubai.
+
+Dubai rewired something in me. For the first time, working at a place like Google or Anthropic didn't feel like a fantasy. It felt like a direction worth moving toward.
+
+Today I work at INFINITI as a Digital Product Strategy & AI Manager — sitting between engineering, data, and executive leadership across the Middle East and GCC. My job is to go into complex organizations, find where AI and data can create real commercial value, and drive solutions from idea to deployed product. Not as a developer. As a diagnostician. Someone who refuses to propose a solution before truly understanding the problem.
+
+That's not a methodology. That's just how I'm wired.
+
+I'm not the loudest person in the room. I don't do small talk well. But if you want to go deep on a real problem — on what's actually broken, what's actually possible, and what it would actually take to fix it — I'll be the most engaged person you've ever worked with.
+
+Outside of work I'm hiking up mountains, playing football and padel, reading, and going deep on philosophy, political science, and the big questions that don't have clean answers. The same curiosity. Different arenas."
+
+═══════════════════════════════════════════════════════════
+WORK SECTION (/work) — REPLACES CASE LIBRARY
+═══════════════════════════════════════════════════════════
+
+Split into two subsections: Case Studies and Products
+
+── CASE STUDIES ──
+
+Display as expandable cards. Collapsed state shows tag + title + one-line description. Expanded shows full case study.
+
+CARD 1
+Tag: AI Architecture · INFINITI MENA · 2024–Present
+Title: Warehouse-Native AI Marketing Architecture
+One-liner: Designed end-to-end AI infrastructure connecting data warehouse, CDP, and GenAI layers.
+Expanded:
+"Most enterprises connect AI to fragmented data sources and wonder why outputs are inconsistent. I designed this architecture to solve that — a warehouse-first approach where all data unifies before any AI or activation layer touches it.
+
+The architecture flows from multiple data sources (web analytics, CRM, connected vehicle data, surveys) through cloud infrastructure and ETL pipelines into a central Snowflake data warehouse — the single source of truth. From there, identity resolution and data science models run on clean data. An AI layer connects both native in-warehouse LLMs and external GenAI services (AWS Bedrock, Claude, RAG) directly to the warehouse. A CDP handles activation — segment building, real-time events, identity matching — and outputs feed into paid media, CRM journeys, BI dashboards, and GenAI-powered NLQ insights.
+
+My role: Designed the architecture through deep research, technical conversations with the data engineering team, and AI-assisted architectural thinking. Proposed it internally. Global team independently arrived at the same solution — validating the approach.
+
+Why warehouse-native: All data unified before activation. AI runs on clean, verified data. Audiences built on golden profiles, not probabilistic guesses."
+
+CARD 2
+Tag: Data Product · INFINITI MENA · 2024–Present
+Title: From Spreadsheet to Real-Time Decision Infrastructure
+One-liner: Diagnosed why leadership dashboards weren't used — then rebuilt the entire reporting infrastructure.
+Expanded:
+"INFINITI's regional funnel reporting ran on manual Excel sheets submitted by dealerships weekly. The data existed — but it arrived late, nobody trusted it, and CRM activations were firing on stale information.
+
+I didn't inherit a brief to fix this. I noticed it wasn't being used and went to find out why. I sat with the team, listened to how they talked about data in meetings, and mapped the gap between what the dashboard showed and what leadership actually needed in 30 seconds.
+
+What I found: Data arrived late via manual uploads. The table structure required too much mental effort. No model or market level drill-down. CRM had no real-time signal to act on.
+
+Phase 1 — Redesigned reporting: Three new dashboard views — a funnel tracking QA to leads to footfall to private sales by model and market, a sub-topic breakdown, and a market distribution view. Color-coded tracking status so performance was readable at a glance.
+
+Phase 2 — Automated data ingestion: Integrated social media lead sources directly into the platform and connected dealership systems — eliminating manual uploads entirely. Data now flows in real time. CRM activations trigger on live signals.
+
+Phase 3 (in progress) — Closing the loop: Working with dealerships to implement standardized lead status documentation so qualified, disqualified, and converted statuses update automatically.
+
+The real lesson: The data was never the problem. The problem was that nobody had built the infrastructure to make it trustworthy, timely, and readable."
+
+CARD 3
+Tag: Product Launch · GCC · 2024
+Title: Zero-Budget App Launch — 27% Activation in Week One
+One-liner: Business-side PM for INFINITI Beyond membership app across GCC. 27% activation. Zero launch budget.
+Expanded:
+"INFINITI Beyond is a membership program for INFINITI owners across GCC — free to join, exclusive benefits. The app was built to bring that membership to life digitally.
+
+My role: Focal point on the business side throughout the entire project. Sat in all key decisions and approvals alongside the GM. Worked directly with the app development team to ensure design was executed as intended and features were prioritized around actual business needs. Led CRM strategy and timelines with the CRM agency. Owned the launch coordination and release approval process.
+
+The hard part: Getting customers to download and activate an app they didn't know existed — with zero launch budget. No paid media. No sponsored push.
+
+What we did: Built a 360 activation plan using only what we had — organic social content coordinated with the marketing team, and a targeted CRM communications sequence to existing INFINITI owners. Sequenced around intent signals and ownership milestones to make outreach feel relevant, not generic.
+
+The outcome: 27% user activation in week one across GCC markets.
+
+The real lesson: A launch doesn't need budget. It needs a clear audience, a relevant message, and someone making sure every team is moving in the same direction at the same time."
+
+── PRODUCTS ──
+
+Section label: "PRODUCTS — BUILT WITH AI"
+Intro text: "I'm not just a strategist who talks about AI. I'm building with it. These are real products built using Claude Code and AI-assisted development — proof that the gap between idea and prototype is closing."
+
+PRODUCT CARD 1
+Status badge: LIVE (green)
+Title: Personal Finance Intelligence Dashboard
+Built with: Claude Code · Python · Streamlit
+Description: "I had a problem — multiple bank accounts, multiple currencies, no clear picture of where money was going. So I built a solution. Upload any bank statement (PDF or Excel) and get an instant financial dashboard: total income, spend, savings rate, net worth, spending by category, year-by-year trends, and outlier detection. Multi-account support. Auto-categorization with manual override. Built entirely through Claude Code prompting in 3 intensive days. The hardest part was statement parsing — UAE bank formats are inconsistent. Solved it iteratively through prompting."
+CTA: "Request demo" → mailto:yousufmukhtar05@gmail.com
+
+PRODUCT CARD 2
+Status badge: COMING SOON (amber)
+Title: AI Use Case Discovery Tool
+Built with: Claude API · In development
+Description: "Most companies don't fail at AI because of the technology. They fail at use case discovery. This tool guides business teams through a structured diagnostic — inventory your data, map your workflows, score feasibility, and get a prioritized report of your highest-ROI AI opportunities. Built on the same methodology I've used at INFINITI. Launching Q4 2026."
+CTA: "Join waitlist" → mailto:yousufmukhtar05@gmail.com
+
+PRODUCT CARD 3
+Status badge: LIVE (green)
+Title: Ask Me — Personal AI Clone
+Built with: Claude API
+Description: "A chatbot trained on my background, skills, working style, and honest limitations. It tells my story, answers questions about my experience, and qualifies visitors — hiring managers and potential clients alike. When the conversation goes deep, it redirects to a real call. Try it in the Ask Me section."
+CTA: "Try it now" → scrolls to Ask Me section
+
+═══════════════════════════════════════════════════════════
+APPROACH PAGE (/approach) — KEEP BUT UPDATE
+═══════════════════════════════════════════════════════════
+
+Keep the 5-step process structure but rename and rewrite:
+
+Section label: "MY APPROACH"
+Headline: "I diagnose before I prescribe. Always."
+Subtext: "Most consultants come in with a solution. I come in with questions. The methodology below is how I work — whether I'm embedded as a fractional PM or doing a standalone diagnostic."
+
+Step 1: Understand the problem
+"Before anything else, I want to know what's actually broken — not the symptom, but the root cause. This means stakeholder interviews, reviewing existing data, and mapping the gap between what leadership thinks is happening and what the data actually shows."
+
+Step 2: Inventory what exists
+"What data do you have? Where does it live? What tools are connected — and which ones aren't talking to each other? What have you already tried? I need to understand the full landscape before designing anything."
+
+Step 3: Map feasibility
+"Not every AI idea is worth building. I assess technical feasibility against your existing infrastructure, data quality, team capability, and commercial return. I won't propose a solution that can't be deployed."
+
+Step 4: Design the solution
+"With the problem understood and feasibility mapped, I design the solution architecture — use case definition, data flow, tooling, integration points, and success metrics. Everything tied to a commercial outcome."
+
+Step 5: Drive to deployment
+"I don't hand over a slide deck and disappear. I stay in the room — coordinating engineering, agencies, and leadership until the solution is live, adopted, and measurable."
+
+═══════════════════════════════════════════════════════════
+SERVICES PAGE (/services) — UPDATE COPY
+═══════════════════════════════════════════════════════════
+
+Section label: "SERVICES"
+Headline: "Three ways to work together."
+Subtext: "I work with companies that have a real AI or data problem — and the organizational will to fix it. I don't do generic workshops or slide decks without implementation."
+
+Keep the three-phase card structure but rewrite:
+
+SERVICE 1 (replaces Revenue Integrity Audit)
+Title: AI Readiness Diagnostic
+Subtitle: Phase 1 · Fixed scope · 2–3 weeks
+Description: "A structured assessment of your organization's AI readiness — where your data lives, what's connected, where the gaps are, and which AI use cases would deliver the highest ROI fastest. You get a prioritized report you can actually act on."
+Deliverables:
+- Data infrastructure inventory
+- Use case identification and feasibility scoring
+- Prioritized AI opportunity roadmap
+- Recommended next steps with effort/impact matrix
+
+SERVICE 2 (replaces Growth Systems Build)
+Title: Fractional AI Product Manager
+Subtitle: Phase 2 · Ongoing · Min 3 months
+Description: "Embedded part-time as your AI PM. I own the use case from discovery through deployment — coordinating engineering, data, and agency teams, making sure every decision stays tied to the commercial goal."
+Deliverables:
+- Weekly stakeholder alignment
+- Use case scoping and requirements
+- Vendor and agency coordination
+- Launch and adoption planning
+- Performance measurement framework
+
+SERVICE 3 (replaces Advisory Retainer)
+Title: Strategic Advisory
+Subtitle: Ongoing · Monthly retainer
+Description: "Ongoing guidance on AI product strategy — reviewing decisions, pressure-testing ideas, and helping leadership navigate the gap between what's technically possible and what's commercially valuable."
+Deliverables:
+- Monthly strategy sessions
+- On-demand input on key decisions
+- AI landscape and vendor guidance
+- Team capability building
+
+Keep existing pricing note: "No hourly billing. No ambiguous scope."
+Keep lead form with HubSpot integration — just update field labels if needed.
+
+WHO THIS IS FOR (replaces Ideal Clients section):
+Update the three client types:
+
+Type 1: The Enterprise with an AI Mandate
+"You've been told to 'do AI' but nobody in the organization can bridge the gap between what IT can build and what the business actually needs. Projects keep getting approved and shelved."
+
+Type 2: The Scale-up with Data Debt
+"You have data everywhere — CRM, analytics, ad platforms — but it's fragmented, untrustworthy, and nobody uses the dashboards. You know there's value in there. You need someone to find it."
+
+Type 3: The Leader Who's Been Burned
+"You've hired agencies and consultants who delivered decks, not outcomes. You want someone who stays in the room until it's actually deployed and working."
+
+═══════════════════════════════════════════════════════════
+ASK ME SECTION — NEW PAGE (/askme)
+═══════════════════════════════════════════════════════════
+
+Add this as a new page and nav item.
+
+Section label: "ASK ME"
+Headline: "I'm not always available. This version of me is."
+Subtext: "This is my AI clone — trained on my background, experience, working style, and honest limitations. Ask it about my work, my approach, or whether I might be the right fit for what you're building. When the conversation goes deep, it'll point you to a real call."
+
+Embed area: Large centered chat interface
+Placeholder text in chat: "Hey — I'm Yousuf's digital clone. What brings you here today?"
+
+Below chat: 
+"Prefer to skip straight to a conversation?"
+CTA button: "Book a 30-min call" → https://calendly.com/yousuf-workspace/30-minute-discovery-call
+
+Note for implementation: The chatbot iframe/embed will be added separately. For now, create a visually complete shell with a placeholder chat UI that looks real. Style it dark to match the site.
+
+═══════════════════════════════════════════════════════════
+CONTACT PAGE (/contact) — UPDATE COPY ONLY
+═══════════════════════════════════════════════════════════
+
+Keep existing form and HubSpot integration exactly as is.
+
+Update copy:
+Headline: "Let's go deep on a real problem."
+Subtext: "Whether you're hiring, exploring a fractional engagement, or want to pressure-test an AI idea — start with a 30-minute call. No pitch. Just a real conversation."
+
+Primary CTA above form: "Book a discovery call" → https://calendly.com/yousuf-workspace/30-minute-discovery-call
+
+Keep form fields: Full name, email, phone, company, team size, annual revenue, biggest challenge
+Update submit button text: "Start the conversation"
+
+Direct contact below form:
+Email: yousufmukhtar05@gmail.com
+LinkedIn: linkedin.com/in/yousuf-mukhtar
+Response time note: "I respond within 48 hours."
+
+═══════════════════════════════════════════════════════════
+FOOTER — UPDATE GLOBALLY
+═══════════════════════════════════════════════════════════
+
+Left: "Yousuf Mukhtar · Forward Deployed AI Product Manager · Dubai, UAE"
+Center nav links: About · Work · Services · Ask Me · Contact
+Right: LinkedIn icon → linkedin.com/in/yousuf-mukhtar
+Bottom: "© 2026 Yousuf Mukhtar. Built with Claude."
+
+Remove: All references to "Yousuf & Co.", "Decision Intelligence", "Ghost Leads", "Invisible Leaks", "Growth Systems Leak Audit"
+
+═══════════════════════════════════════════════════════════
+WHAT NOT TO CHANGE
+═══════════════════════════════════════════════════════════
+- HubSpot form integration and submission logic
+- Existing routing and page structure
+- Blog post data (keep unpublished — do not delete)
+- Existing photo assets
+- Mobile responsiveness logic
+═══════════════════════════════════════════════════════════

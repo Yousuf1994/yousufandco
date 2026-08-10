@@ -18,31 +18,32 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { href: "/approach", label: "Approach" },
+    { href: "/", label: "About" },
+    { href: "/work", label: "Work" },
     { href: "/services", label: "Services" },
-    { href: "/case-library", label: "Case Library" },
+    { href: "/askme", label: "Ask Me" },
     { href: "/contact", label: "Contact" },
   ];
 
   return (
-    <nav 
+    <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
-        isScrolled 
-          ? "bg-background/90 backdrop-blur-md border-border py-4" 
+        isScrolled
+          ? "bg-background/90 backdrop-blur-md border-border py-4"
           : "bg-transparent border-transparent py-6"
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-          <img src="/images/logo-transparent.png" alt="Yousuf & Co. Logo" className="h-10 w-auto" />
+          <img src="/images/logo-transparent.png" alt="Yousuf Mukhtar" className="h-10 w-auto" />
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link 
-              key={link.href} 
+            <Link
+              key={link.href}
               href={link.href}
               className={cn(
                 "text-sm font-medium transition-colors hover:text-primary",
@@ -52,13 +53,19 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Button size="sm" className="ml-4 font-medium" asChild>
-            <Link href="/contact"><span className="cursor-pointer">Schedule a call</span></Link>
+          <Button
+            size="sm"
+            className="ml-4 font-medium bg-primary hover:bg-primary/90 text-primary-foreground"
+            asChild
+          >
+            <a href="https://calendly.com/yousuf-workspace/30-minute-discovery-call" target="_blank" rel="noopener noreferrer">
+              Book a call
+            </a>
           </Button>
         </div>
 
         {/* Mobile Toggle */}
-        <button 
+        <button
           className="md:hidden text-foreground"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
@@ -71,8 +78,8 @@ export function Navbar() {
         <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border p-6 shadow-lg animate-in slide-in-from-top-5">
           <div className="flex flex-col gap-4">
             {navLinks.map((link) => (
-              <Link 
-                key={link.href} 
+              <Link
+                key={link.href}
                 href={link.href}
                 className={cn(
                   "text-lg font-medium transition-colors hover:text-primary",
@@ -84,8 +91,10 @@ export function Navbar() {
               </Link>
             ))}
             <div className="pt-4 border-t border-border">
-              <Button className="w-full" asChild>
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}><span className="cursor-pointer">Consult for Diagnostic</span></Link>
+              <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
+                <a href="https://calendly.com/yousuf-workspace/30-minute-discovery-call" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)}>
+                  Book a call
+                </a>
               </Button>
             </div>
           </div>

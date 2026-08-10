@@ -5,14 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Linkedin } from "lucide-react";
+import { Mail, Linkedin, ExternalLink } from "lucide-react";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full Name is required"),
@@ -54,9 +53,7 @@ export default function Contact() {
 
       const response = await fetch(url, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           fields: [
             { name: "email", value: values.email },
@@ -84,7 +81,7 @@ export default function Contact() {
       } else {
         throw new Error("Failed to submit");
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Submission Error",
         description: "There was a problem sending your request. Please email me directly.",
@@ -99,171 +96,178 @@ export default function Contact() {
     <div className="min-h-screen bg-background font-sans">
       <Navbar />
 
-      <section className="pt-32 pb-12 container mx-auto px-6">
+      <section className="pt-32 pb-20 container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          
+
           {/* Left: Info */}
           <div>
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-foreground">
-              Want to reach out?
+            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-6 block">CONTACT</span>
+            <h1 className="text-4xl md:text-5xl font-medium mb-6 text-foreground leading-tight">
+              Let's go deep on a real problem.
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-12">
-              I take on a limited number of engagements per quarter to ensure deep focus. 
-              Fill out the form to see if we're a fit.
+            <p className="text-[15px] text-muted-foreground leading-relaxed mb-10">
+              Whether you're hiring, exploring a fractional engagement, or want to pressure-test an AI idea — start with a 30-minute call. No pitch. Just a real conversation.
             </p>
-            
-            <div className="space-y-8">
-               <div className="bg-secondary/30 p-6 rounded-xl border border-border">
-                 <h3 className="font-bold mb-2">Direct Contact</h3>
-                 <p className="text-muted-foreground mb-4 text-sm">You can email me directly or connect on LinkedIn.</p>
-                 <div className="flex flex-col gap-3">
-                   <a href="mailto:yousuf.workspace@gmail.com" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors font-medium">
-                     <Mail size={18} /> yousuf.workspace@gmail.com
-                   </a>
-                   <a href="https://www.linkedin.com/in/yousuf-mukhtar/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors font-medium">
-                     <Linkedin size={18} /> LinkedIn Profile
-                   </a>
-                 </div>
-               </div>
+
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground mb-10 flex items-center gap-2" size="lg" asChild>
+              <a href="https://calendly.com/yousuf-workspace/30-minute-discovery-call" target="_blank" rel="noopener noreferrer">
+                Book a discovery call <ExternalLink size={16} />
+              </a>
+            </Button>
+
+            <div className="bg-card border border-border rounded-lg p-6">
+              <h3 className="font-medium mb-2 text-foreground">Direct contact</h3>
+              <p className="text-sm text-muted-foreground mb-5">Or reach out directly — I respond within 48 hours.</p>
+              <div className="flex flex-col gap-3">
+                <a href="mailto:yousufmukhtar05@gmail.com" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                  <Mail size={16} /> yousufmukhtar05@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/yousuf-mukhtar/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                  <Linkedin size={16} /> linkedin.com/in/yousuf-mukhtar
+                </a>
+              </div>
             </div>
           </div>
-          
+
           {/* Right: Form */}
-          <div>
-            <Card className="shadow-lg border-border">
-              <CardContent className="p-8">
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="fullName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Full Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Jane Doe" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                              <Input placeholder="jane@company.com" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="phone"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Contact Number</FormLabel>
-                            <FormControl>
-                              <Input placeholder="+1 (555) 000-0000" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="companyName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Company Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Acme Inc." {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="teamSize"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Team Size</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Select size" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                <SelectItem value="1-10">1-10</SelectItem>
-                                <SelectItem value="11-50">11-50</SelectItem>
-                                <SelectItem value="51-200">51-200</SelectItem>
-                                <SelectItem value="200+">200+</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="revenue"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Annual Revenue</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Select revenue" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                <SelectItem value="<1M">&lt; $1M</SelectItem>
-                                <SelectItem value="1M-5M">$1M - $5M</SelectItem>
-                                <SelectItem value="5M-20M">$5M - $20M</SelectItem>
-                                <SelectItem value="20M+">$20M+</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
+          <div className="bg-card border border-border rounded-xl p-8">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="fullName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm text-foreground">Full Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Jane Doe" className="bg-secondary border-border" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm text-foreground">Email</FormLabel>
+                        <FormControl>
+                          <Input placeholder="jane@company.com" className="bg-secondary border-border" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
 
-                    <FormField
-                      control={form.control}
-                      name="challenge"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>What is your biggest challenge?</FormLabel>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm text-foreground">Contact Number</FormLabel>
+                        <FormControl>
+                          <Input placeholder="+971 50 000 0000" className="bg-secondary border-border" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="companyName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm text-foreground">Company Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Acme Inc." className="bg-secondary border-border" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="teamSize"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm text-foreground">Team Size</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
-                            <Textarea 
-                              placeholder="Describe your current bottleneck..." 
-                              className="min-h-[120px]"
-                              {...field} 
-                            />
+                            <SelectTrigger className="bg-secondary border-border">
+                              <SelectValue placeholder="Select size" />
+                            </SelectTrigger>
                           </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                          <SelectContent className="bg-card border-border">
+                            <SelectItem value="1-10">1–10</SelectItem>
+                            <SelectItem value="11-50">11–50</SelectItem>
+                            <SelectItem value="51-200">51–200</SelectItem>
+                            <SelectItem value="200+">200+</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="revenue"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm text-foreground">Annual Revenue</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="bg-secondary border-border">
+                              <SelectValue placeholder="Select revenue" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent className="bg-card border-border">
+                            <SelectItem value="<1M">&lt; $1M</SelectItem>
+                            <SelectItem value="1M-5M">$1M – $5M</SelectItem>
+                            <SelectItem value="5M-20M">$5M – $20M</SelectItem>
+                            <SelectItem value="20M+">$20M+</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
 
-                    <Button type="submit" size="lg" className="w-full h-12">Schedule a call</Button>
-                  </form>
-                </Form>
-              </CardContent>
-            </Card>
+                <FormField
+                  control={form.control}
+                  name="challenge"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-sm text-foreground">What are you trying to solve?</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Describe the problem you're working on..."
+                          className="min-h-[110px] bg-secondary border-border"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={isSubmitting}
+                  className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
+                >
+                  {isSubmitting ? "Sending..." : "Start the conversation"}
+                </Button>
+              </form>
+            </Form>
           </div>
         </div>
       </section>

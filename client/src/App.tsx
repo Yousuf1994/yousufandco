@@ -7,8 +7,9 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import Approach from "@/pages/approach";
 import Services from "@/pages/services";
-import CaseLibrary from "@/pages/case-library";
+import Work from "@/pages/work";
 import Contact from "@/pages/contact";
+import AskMe from "@/pages/askme";
 
 function Router() {
   return (
@@ -16,8 +17,10 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/approach" component={Approach} />
       <Route path="/services" component={Services} />
-      <Route path="/case-library" component={CaseLibrary} />
+      <Route path="/work" component={Work} />
+      <Route path="/case-library" component={Work} />
       <Route path="/contact" component={Contact} />
+      <Route path="/askme" component={AskMe} />
       <Route component={NotFound} />
     </Switch>
   );

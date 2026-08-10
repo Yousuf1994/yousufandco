@@ -1,43 +1,50 @@
 import { Link } from "wouter";
+import { Linkedin } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-secondary/30 border-t border-border py-16">
+    <footer className="border-t border-border py-12">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+          {/* Left */}
           <div>
-            <Link href="/" className="inline-block hover:opacity-80 transition-opacity">
-              <img src="/images/logo-transparent.png" alt="Yousuf & Co. Logo" className="h-10 w-auto mb-2" />
-            </Link>
-            <p className="text-sm text-muted-foreground mt-2 max-w-xs">
-              Decision intelligence and growth strategy for scaling companies.
-            </p>
+            <p className="text-sm font-medium text-foreground">Yousuf Mukhtar</p>
+            <p className="text-sm text-muted-foreground">Forward Deployed AI Product Manager · Dubai, UAE</p>
           </div>
-          
-          <div className="flex flex-col md:flex-row gap-8 md:gap-12">
-            <div className="flex flex-col gap-3">
-              <span className="font-medium text-sm text-foreground">Navigate</span>
-              <Link href="/approach"><span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">Approach</span></Link>
-              <Link href="/services"><span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">Services</span></Link>
-              <Link href="/case-library"><span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">Cases</span></Link>
-            </div>
-            
-            <div className="flex flex-col gap-3">
-              <span className="font-medium text-sm text-foreground">Connect</span>
-              <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">LinkedIn</a>
-              <a href="mailto:hello@example.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">Email</a>
-            </div>
+
+          {/* Center nav */}
+          <div className="flex flex-wrap gap-6">
+            {[
+              { href: "/", label: "About" },
+              { href: "/work", label: "Work" },
+              { href: "/services", label: "Services" },
+              { href: "/askme", label: "Ask Me" },
+              { href: "/contact", label: "Contact" },
+            ].map(link => (
+              <Link key={link.href} href={link.href}>
+                <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                  {link.label}
+                </span>
+              </Link>
+            ))}
           </div>
+
+          {/* Right */}
+          <a
+            href="https://www.linkedin.com/in/yousuf-mukhtar/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-primary transition-colors"
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={20} />
+          </a>
         </div>
-        
-        <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
+
+        <div className="mt-10 pt-6 border-t border-border">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Strategic Growth Consulting. All rights reserved.
+            © 2026 Yousuf Mukhtar. Built with Claude.
           </p>
-          <div className="flex gap-4">
-            <a href="#" className="text-xs text-muted-foreground hover:text-primary">Privacy Policy</a>
-            <a href="#" className="text-xs text-muted-foreground hover:text-primary">Terms of Service</a>
-          </div>
         </div>
       </div>
     </footer>

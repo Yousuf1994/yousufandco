@@ -1,96 +1,94 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight, CheckCircle2, FileText, Map, ListTodo } from "lucide-react";
 import { Link } from "wouter";
+import { frameworkSteps } from "@/lib/data";
 
 export default function Approach() {
   return (
     <div className="min-h-screen bg-background font-sans">
       <Navbar />
-      
+
       {/* Hero */}
-      <section className="pt-32 pb-20 container mx-auto px-6">
+      <section className="pt-32 pb-16 container mx-auto px-6">
         <div className="max-w-3xl">
-          <Badge variant="outline" className="mb-6">The Methodology</Badge>
-          <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 text-foreground">
-            Diagnosis before prescription.
+          <span className="text-xs font-bold uppercase tracking-widest text-primary mb-6 block">MY APPROACH</span>
+          <h1 className="text-4xl md:text-5xl font-medium mb-6 text-foreground leading-tight">
+            I diagnose before I prescribe. Always.
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Most growth problems aren't traffic problems—they're system problems. 
-            My 4-step framework identifies the bottleneck so we don't waste time optimizing the wrong thing.
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            Most consultants come in with a solution. I come in with questions. The methodology below is how I work — whether I'm embedded as a fractional PM or doing a standalone diagnostic.
           </p>
         </div>
       </section>
 
-      {/* Week-by-Week Timeline */}
-      <section className="py-20 bg-secondary/20 border-y border-border">
+      {/* 5-Step Framework */}
+      <section className="py-16 border-t border-border">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-serif font-bold mb-12">The 30-Day Diagnostic Sprint</h2>
-          
-          <div className="space-y-12 relative before:absolute before:left-4 md:before:left-1/2 before:top-0 before:bottom-0 before:w-px before:bg-border before:-translate-x-1/2">
-            {[
-              { week: "Week 1", title: "Data Audit & Funnel Map", desc: "We gain access, audit tracking integrity, and build a source-of-truth funnel map." },
-              { week: "Week 2", title: "Qualitative Deep Dive", desc: "Customer interviews, session replay analysis, and survey reviews to understand the 'why' behind the drop-offs." },
-              { week: "Week 3", title: "Channel & Unit Economics", desc: "Analyzing CAC/LTV by channel to see where you're actually making money vs. just acquiring users." },
-              { week: "Week 4", title: "Synthesis & Roadmap", desc: "Compiling findings into a prioritized execution plan with projected impact estimates." }
-            ].map((item, i) => (
-              <div key={i} className={`flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-center ${i % 2 !== 0 ? "md:flex-row-reverse" : ""}`}>
-                <div className={`md:w-1/2 flex ${i % 2 !== 0 ? "md:justify-start" : "md:justify-end"}`}>
-                  <div className="bg-background border border-border p-6 rounded-xl shadow-sm max-w-md w-full relative z-10">
-                    <span className="text-xs font-mono font-bold text-primary uppercase tracking-wider mb-2 block">{item.week}</span>
-                    <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.desc}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Left sticky */}
+            <div className="space-y-6 lg:sticky lg:top-32 lg:self-start">
+              <h2 className="text-2xl font-medium text-foreground">The five-step methodology</h2>
+              <p className="text-muted-foreground text-[15px] leading-relaxed">
+                Every engagement — regardless of scope — follows this process. Steps may overlap or run in parallel, but they're never skipped.
+              </p>
+              <div className="bg-card border border-border p-6 rounded-lg">
+                <h4 className="text-sm font-medium mb-4 text-foreground">Typical inputs needed:</h4>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                    Analytics platforms (GA4, Mixpanel, Amplitude)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                    Ad accounts (Meta, Google, LinkedIn — read-only)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                    CRM exports (HubSpot/Salesforce — anonymized)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                    Stakeholder interviews (1–3 people)
+                  </li>
+                </ul>
+              </div>
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
+                <a href="https://calendly.com/yousuf-workspace/30-minute-discovery-call" target="_blank" rel="noopener noreferrer">
+                  Book a call
+                </a>
+              </Button>
+            </div>
+
+            {/* Right: steps */}
+            <div className="relative border-l border-border pl-10 space-y-12 py-2">
+              {frameworkSteps.map((step, i) => (
+                <div key={i} className="relative group">
+                  <span className="absolute -left-[43px] top-1 flex items-center justify-center w-7 h-7 rounded-full bg-background border border-border group-hover:border-primary group-hover:bg-primary/10 transition-all text-xs font-mono font-medium text-muted-foreground group-hover:text-primary z-10">
+                    {step.number}
+                  </span>
+                  <div className="space-y-2">
+                    <h3 className="text-base font-medium text-foreground group-hover:text-primary transition-colors">
+                      {step.title}
+                    </h3>
+                    <p className="text-[15px] text-muted-foreground leading-relaxed">{step.description}</p>
                   </div>
                 </div>
-                
-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary border-4 border-background z-20" />
-                
-                <div className="md:w-1/2 hidden md:block" /> 
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Deliverables */}
-      <section className="py-24 container mx-auto px-6">
-        <h2 className="text-3xl font-serif font-bold mb-12 text-center">Deliverables You'll Actually Use</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card className="bg-secondary/10 border-border">
-            <CardContent className="p-8 space-y-4">
-              <div className="p-3 bg-primary/10 w-fit rounded-lg text-primary"><FileText /></div>
-              <h3 className="text-xl font-bold">Executive Brief</h3>
-              <p className="text-muted-foreground">A 5-page narrative summary for leadership and board members, highlighting key risks and opportunities.</p>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-secondary/10 border-border">
-            <CardContent className="p-8 space-y-4">
-              <div className="p-3 bg-primary/10 w-fit rounded-lg text-primary"><Map /></div>
-              <h3 className="text-xl font-bold">Strategic Roadmap</h3>
-              <p className="text-muted-foreground">A 90-day plan broken down by sprint, with clear owners and success metrics for each initiative.</p>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-secondary/10 border-border">
-            <CardContent className="p-8 space-y-4">
-              <div className="p-3 bg-primary/10 w-fit rounded-lg text-primary"><ListTodo /></div>
-              <h3 className="text-xl font-bold">Experiment Backlog</h3>
-              <p className="text-muted-foreground">A prioritized list of 10-15 specific experiments to run, scored by ICE (Impact, Confidence, Ease).</p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      <section className="py-20 bg-primary text-primary-foreground text-center">
-        <div className="container mx-auto px-6 max-w-2xl">
-          <h2 className="text-3xl font-serif font-bold mb-6">Ready to stop guessing?</h2>
-          <Button size="lg" variant="secondary" className="h-12 px-8" asChild>
-            <Link href="/contact"><span className="cursor-pointer text-primary hover:text-primary/80">Consult for Diagnostic</span></Link>
+      {/* CTA */}
+      <section className="py-20 border-t border-border">
+        <div className="container mx-auto px-6 text-center max-w-xl">
+          <h2 className="text-2xl font-medium mb-4">Ready to start with a diagnostic?</h2>
+          <p className="text-muted-foreground mb-8">
+            A 2–3 week fixed-scope engagement to map your AI readiness and identify your highest-ROI opportunities.
+          </p>
+          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" size="lg" asChild>
+            <Link href="/contact"><span className="cursor-pointer">Get in touch</span></Link>
           </Button>
         </div>
       </section>
