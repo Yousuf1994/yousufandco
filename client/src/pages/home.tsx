@@ -102,7 +102,7 @@ export default function Home() {
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                 <span className="text-[11px] font-bold tracking-widest uppercase text-primary">
-                  Available for new roles &amp; engagements · Dubai, UAE
+                  Available for new opportunities &amp; engagements · Dubai, UAE
                 </span>
               </div>
 
@@ -126,16 +126,6 @@ export default function Home() {
                 </Button>
               </div>
 
-              {/* Logos */}
-              <div className="pt-6">
-                <p className="text-xs text-muted-foreground uppercase tracking-widest mb-4">Worked with</p>
-                <div className="flex flex-wrap gap-8 items-center opacity-40">
-                  <span className="text-base font-serif font-bold tracking-widest text-foreground">WWF</span>
-                  <span className="text-base font-sans font-black tracking-tighter text-foreground">TikTok</span>
-                  <span className="text-base font-mono font-bold tracking-tight text-foreground">INFINITI</span>
-                  <span className="text-base font-serif italic font-bold text-foreground">Motive</span>
-                </div>
-              </div>
             </div>
 
             {/* Right: Photo */}
