@@ -10,6 +10,7 @@ import Services from "@/pages/services";
 import Work from "@/pages/work";
 import Contact from "@/pages/contact";
 import AskMe from "@/pages/askme";
+import { FloatingCTA } from "@/components/ui/FloatingCTA";
 
 function Router() {
   return (
@@ -32,6 +33,7 @@ function App() {
       <TooltipProvider>
         <Toaster />
         <Router />
+        <FloatingCTA />
       </TooltipProvider>
     </QueryClientProvider>
   );

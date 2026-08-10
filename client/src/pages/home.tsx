@@ -2,10 +2,9 @@ import { useState, FormEvent } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Check, ArrowRight, ExternalLink } from "lucide-react";
 import { Link } from "wouter";
-import { services, faqs, products } from "@/lib/data";
+import { products } from "@/lib/data";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -88,7 +87,6 @@ export default function Home() {
 
       {/* ── HERO ── */}
       <section className="relative pt-32 pb-24 md:pt-40 md:pb-36 overflow-hidden">
-        {/* Subtle radial gradient */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full bg-primary/5 blur-[120px]" />
         </div>
@@ -98,7 +96,6 @@ export default function Home() {
 
             {/* Left */}
             <div className="space-y-8">
-              {/* Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                 <span className="text-[11px] font-bold tracking-widest uppercase text-primary">
@@ -106,17 +103,14 @@ export default function Home() {
                 </span>
               </div>
 
-              {/* Headline */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-tight text-foreground">
                 Most AI projects inside companies die between the idea and the build.
               </h1>
 
-              {/* Subheadline */}
               <p className="text-[17px] text-muted-foreground leading-relaxed max-w-lg">
                 I work in that gap. Not as a developer — but as a diagnostician. I identify where AI can move the needle, design the solution architecture, and drive it from concept to deployed product by connecting the right people, tools, and data.
               </p>
 
-              {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground h-12 px-8" asChild>
                   <Link href="/work"><span className="cursor-pointer">View my work</span></Link>
@@ -125,7 +119,6 @@ export default function Home() {
                   <Link href="/services"><span className="cursor-pointer">Work with me</span></Link>
                 </Button>
               </div>
-
             </div>
 
             {/* Right: Photo */}
@@ -166,89 +159,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── WHO I WORK WITH ── */}
-      <section className="py-24 border-t border-border">
-        <div className="container mx-auto px-6">
-          <div className="mb-12">
-            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-4 block">WHO THIS IS FOR</span>
-            <h2 className="text-3xl md:text-4xl font-medium leading-tight max-w-xl">
-              I work with companies that have a real problem and the will to fix it.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {[
-              {
-                title: "The Enterprise with an AI Mandate",
-                desc: "You've been told to 'do AI' but nobody in the organization can bridge the gap between what IT can build and what the business actually needs. Projects keep getting approved and shelved.",
-                accent: "primary"
-              },
-              {
-                title: "The Scale-up with Data Debt",
-                desc: "You have data everywhere — CRM, analytics, ad platforms — but it's fragmented, untrustworthy, and nobody uses the dashboards. You know there's value in there. You need someone to find it.",
-                accent: "accent"
-              },
-              {
-                title: "The Leader Who's Been Burned",
-                desc: "You've hired agencies and consultants who delivered decks, not outcomes. You want someone who stays in the room until it's actually deployed and working.",
-                accent: "destructive"
-              }
-            ].map((item, i) => (
-              <div key={i} className="bg-card border border-border rounded-lg p-7">
-                <div className={cn(
-                  "w-1.5 h-8 rounded-full mb-5",
-                  i === 0 ? "bg-primary" : i === 1 ? "bg-accent" : "bg-destructive"
-                )} />
-                <h3 className="font-medium text-foreground mb-3">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SERVICES PREVIEW ── */}
-      <section className="py-24 border-t border-border">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-primary mb-4 block">SERVICES</span>
-              <h2 className="text-3xl md:text-4xl font-medium">Three ways to work together.</h2>
-              <p className="text-muted-foreground mt-2">No hourly billing. No ambiguous scope.</p>
-            </div>
-            <Link href="/services">
-              <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer flex items-center gap-1">
-                View all services <ArrowRight size={14} />
-              </span>
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {services.map((service) => (
-              <div key={service.id} className="bg-card border border-border rounded-lg p-7 flex flex-col">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-primary mb-4 block">
-                  {service.timeline}
-                </span>
-                <h3 className="text-lg font-medium text-foreground mb-3">{service.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">{service.description}</p>
-                <ul className="space-y-2 mb-6">
-                  {service.deliverables.slice(0, 3).map((d, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <Check size={13} className="mt-1 text-primary shrink-0" />
-                      <span>{d}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="outline" className="w-full border-border hover:border-primary hover:text-primary" asChild>
-                  <Link href="/contact"><span className="cursor-pointer">Get in touch</span></Link>
-                </Button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── WORK PREVIEW ── */}
+      {/* ── RECENT WORK ── */}
       <section className="py-24 border-t border-border">
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-end mb-12">
@@ -265,7 +176,7 @@ export default function Home() {
 
           <div className="space-y-3">
             {[
-              { tag: "AI Architecture · INFINITI MENA", title: "Warehouse-Native AI Marketing Architecture", result: "Warehouse-first approach — AI runs on clean, verified data across all channels" },
+              { tag: "AI Architecture · INFINITI MENA", title: "Warehouse-Native AI Marketing Architecture", result: "Warehouse-first approach — AI runs on clean, verified data across all channels." },
               { tag: "Data Product · INFINITI MENA", title: "From Spreadsheet to Real-Time Decision Infrastructure", result: "Manual Excel eliminated. Real-time data. CRM activations on live signals." },
               { tag: "Product Launch · GCC", title: "Zero-Budget App Launch — 27% Activation in Week One", result: "27% user activation in week one across GCC markets with zero paid media." }
             ].map((item, i) => (
@@ -328,27 +239,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── FAQ ── */}
+      {/* ── ASK ME ── */}
       <section className="py-24 border-t border-border">
-        <div className="container mx-auto px-6 max-w-3xl">
-          <span className="text-xs font-bold uppercase tracking-widest text-primary mb-6 block">FAQ</span>
-          <h2 className="text-3xl font-medium mb-10">Common questions.</h2>
-          <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, i) => (
-              <AccordionItem key={i} value={`item-${i}`} className="border-border">
-                <AccordionTrigger className="text-left font-medium text-base py-5 hover:text-primary hover:no-underline">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-6 leading-relaxed whitespace-pre-wrap text-[15px]">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto bg-card border border-border rounded-xl p-10 md:p-14 text-center">
+            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-4 block">ASK ME</span>
+            <h2 className="text-3xl md:text-4xl font-medium mb-4 leading-tight">
+              I'm not always available.<br />This version of me is.
+            </h2>
+            <p className="text-muted-foreground text-[15px] leading-relaxed max-w-xl mx-auto mb-8">
+              My AI clone is trained on my background, experience, working style, and honest limitations. Ask it about my work, my approach, or whether I might be the right fit for what you're building.
+            </p>
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
+              <Link href="/askme"><span className="cursor-pointer">Talk to my AI clone →</span></Link>
+            </Button>
+          </div>
         </div>
       </section>
 
-      {/* ── FINAL CTA ── */}
+      {/* ── CONTACT ── */}
       <section className="py-24 border-t border-border">
         <div className="container mx-auto px-6 max-w-4xl">
           <div className="bg-card border border-border rounded-xl p-10 md:p-14">
