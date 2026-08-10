@@ -115,9 +115,6 @@ export default function Home() {
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground h-12 px-8" asChild>
                   <Link href="/work"><span className="cursor-pointer">View my work</span></Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-border hover:border-primary hover:text-primary h-12 px-8" asChild>
-                  <Link href="/services"><span className="cursor-pointer">Work with me</span></Link>
-                </Button>
               </div>
             </div>
 
