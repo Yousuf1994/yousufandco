@@ -1,6 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Logo } from "@/components/ui/Logo";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -36,7 +37,7 @@ export function Navbar() {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-          <img src="/images/logo-transparent.png" alt="Yousuf Mukhtar" className="h-10 w-auto" />
+          <Logo variant="dark" />
         </Link>
 
         {/* Desktop Nav */}

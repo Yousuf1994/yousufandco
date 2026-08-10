@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Linkedin } from "lucide-react";
+import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
   return (
@@ -8,8 +9,8 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           {/* Left */}
           <div>
-            <p className="text-sm font-medium text-foreground">Yousuf Mukhtar</p>
-            <p className="text-sm text-muted-foreground">Forward Deployed AI Product Manager · Dubai, UAE</p>
+            <Logo variant="dark" className="mb-1" />
+            <p className="text-sm text-muted-foreground mt-2">Forward Deployed AI Product Manager · Dubai, UAE</p>
           </div>
 
           {/* Center nav */}
