@@ -7,7 +7,11 @@ import { Send, ExternalLink } from "lucide-react";
 interface Message {
   role: "assistant" | "user";
   content: string;
+  showBooking?: boolean;
 }
+
+const BOOKING_TOKEN = "[SHOW_BOOKING_CTA]";
+const BOOKING_URL = "https://calendly.com/yousuf-workspace/30-minute-discovery-call";
 
 
 export default function AskMe() {
@@ -31,17 +35,37 @@ export default function AskMe() {
     if (!userMessage || isLoading) return;
 
     setInput("");
-    setMessages(prev => [...prev, { role: "user", content: userMessage }]);
+    const nextMessages: Message[] = [...messages, { role: "user", content: userMessage }];
+    setMessages(nextMessages);
     setIsLoading(true);
 
-    // Simulate a brief thinking delay, then show a holding response
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: nextMessages.map(({ role, content }) => ({ role, content })),
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Request failed");
+      }
+
+      const data = await res.json();
+      const rawText = data.content?.[0]?.text ?? "";
+      const showBooking = rawText.includes(BOOKING_TOKEN);
+      const content = rawText.replace(BOOKING_TOKEN, "").trim();
+
+      setMessages(prev => [...prev, { role: "assistant", content, showBooking }]);
+    } catch (error) {
       setMessages(prev => [...prev, {
         role: "assistant",
-        content: "Great question — the full AI version of me is being set up and will be live shortly. In the meantime, the best way to get a real answer is to book a 30-minute call or email me directly at yousufmukhtar05@gmail.com. I respond within 48 hours."
+        content: "Something went wrong on my end. Please try again, or email me directly at yousufmukhtar05@gmail.com."
       }]);
-    }, 1200);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -75,14 +99,27 @@ export default function AskMe() {
                       Y
                     </div>
                   )}
-                  <div
-                    className={`max-w-[80%] rounded-xl px-4 py-3 text-[14px] leading-relaxed ${
-                      msg.role === "user"
-                        ? "bg-primary text-primary-foreground rounded-tr-sm"
-                        : "bg-secondary text-foreground rounded-tl-sm"
-                    }`}
-                  >
-                    {msg.content}
+                  <div className="max-w-[80%] flex flex-col items-start gap-2">
+                    <div
+                      className={`rounded-xl px-4 py-3 text-[14px] leading-relaxed ${
+                        msg.role === "user"
+                          ? "bg-primary text-primary-foreground rounded-tr-sm"
+                          : "bg-secondary text-foreground rounded-tl-sm"
+                      }`}
+                    >
+                      {msg.content}
+                    </div>
+                    {msg.showBooking && (
+                      <Button
+                        size="sm"
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                        asChild
+                      >
+                        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                          Book a 30-min call <ExternalLink size={14} />
+                        </a>
+                      </Button>
+                    )}
                   </div>
                 </div>
               ))}
