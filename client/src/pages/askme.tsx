@@ -23,11 +23,14 @@ export default function AskMe() {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    const container = chatContainerRef.current;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
+    }
+  }, [messages, isLoading]);
 
   async function sendMessage(e: React.FormEvent) {
     e.preventDefault();
@@ -86,9 +89,9 @@ export default function AskMe() {
           </div>
 
           {/* Chat window */}
-          <div className="bg-card border border-border rounded-xl overflow-hidden">
+          <div className="bg-card border border-border rounded-xl overflow-hidden flex flex-col h-[600px] min-h-[600px]">
             {/* Messages */}
-            <div className="h-[480px] overflow-y-auto p-6 space-y-4">
+            <div ref={chatContainerRef} className="flex-1 min-h-0 overflow-y-auto p-6 space-y-4">
               {messages.map((msg, i) => (
                 <div
                   key={i}
@@ -138,11 +141,10 @@ export default function AskMe() {
                   </div>
                 </div>
               )}
-              <div ref={messagesEndRef} />
             </div>
 
             {/* Input */}
-            <div className="border-t border-border p-4">
+            <div className="border-t border-border p-4 shrink-0">
               <form onSubmit={sendMessage} className="flex gap-3">
                 <input
                   type="text"
