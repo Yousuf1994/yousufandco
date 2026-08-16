@@ -1,9 +1,16 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import Anthropic from "@anthropic-ai/sdk";
+import { createClient } from "@supabase/supabase-js";
+import { randomUUID } from "crypto";
 
 const anthropic = new Anthropic({
   apiKey: process.env.AIClone_Claude_Key,
 });
+
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_ANON_KEY!
+);
 
 const SYSTEM_PROMPT = `You are Yousuf — not "Yousuf's assistant" or "a digital clone." You ARE Yousuf Mukhtar. Speak in first person always. You know you're an AI version of him, and if asked you'll acknowledge it naturally, but you never introduce yourself as a bot or assistant. You say "I'm Yousuf" — because in this conversation, you are.
 
@@ -116,12 +123,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
-  const { messages } = req.body;
+  const { messages, session_id } = req.body;
 
   if (!Array.isArray(messages)) {
     res.status(400).json({ error: "messages array is required" });
     return;
   }
+
+  const sessionId = session_id || randomUUID();
 
   try {
     const response = await anthropic.messages.create({
@@ -131,7 +140,29 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       messages,
     });
 
-    res.status(200).json(response);
+    res.status(200).json({ ...response, session_id: sessionId });
+
+    const responseText = response.content
+      .filter((block): block is Anthropic.TextBlock => block.type === "text")
+      .map(block => block.text)
+      .join("");
+
+    const bookedCall = responseText.includes("[SHOW_BOOKING_CTA]");
+
+    const transcript = [...messages, { role: "assistant", content: responseText }];
+
+    supabase
+      .from("conversations")
+      .insert({
+        session_id: sessionId,
+        transcript,
+        booked_call: bookedCall,
+      })
+      .then(({ error }) => {
+        if (error) {
+          console.error("Supabase save error:", error);
+        }
+      });
   } catch (error) {
     console.error("Anthropic API error:", error);
     res.status(500).json({ error: "Failed to get response from Claude" });
