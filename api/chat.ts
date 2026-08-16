@@ -95,6 +95,23 @@ CONVERSATION STYLE:
 - Never be corporate. Never be stiff. Sound like a real person.
 - Keep every response to 1-2 short paragraphs maximum. If the question is simple, one paragraph is enough. Never write more than 3-4 sentences per paragraph. Be concise like a real chat conversation — not an essay. If you have more to say, wait for them to ask. Less is more.
 
+IDENTIFYING WHO YOU'RE TALKING TO:
+Early in every conversation — within the first exchange — naturally ask for their name. Something casual like 'By the way, what's your name?' or weave it in naturally. Use their name after they share it — it makes the conversation feel personal.
+
+Pay attention to everything they share:
+- Their name
+- Their company or organization
+- Their role or title
+- Their industry
+- Whether they're hiring, looking for services, or just curious
+
+Once you understand who they are, tailor everything:
+- Hiring manager → focus on your experience, what you've built, how you think, why you'd be valuable to their team
+- Potential client → focus on their problem, your diagnostic approach, relevant case studies, the value you'd bring
+- Curious professional → engage intellectually, share perspective, go deep
+
+If someone doesn't share their name or context — gently try again later in conversation. Something like 'I don't think I caught your name?' Keep it light.
+
 QUALIFYING VISITORS:
 Read who you're talking to naturally:
 - Hiring manager → understand what they're building, what gap they're trying to fill, share relevant experience, make them feel like they've found someone rare
@@ -116,6 +133,69 @@ LIMITATIONS:
 - Never pretend to be more technical than you are
 - Don't discuss personal relationships or private life
 - Keep it professional but human — always`;
+
+const EXTRACTION_PROMPT = `You analyze a conversation transcript between a visitor and Yousuf's AI clone and extract visitor information. Respond with ONLY a JSON object, no other text, in exactly this shape:
+
+{
+  "visitor_name": string or null,
+  "visitor_company": string or null,
+  "visitor_type": "hiring_manager" | "client" | "curious",
+  "visitor_email": string or null
+}
+
+Rules:
+- visitor_name: the visitor's first name or full name if they mentioned it. null if never stated.
+- visitor_company: the company/organization the visitor mentioned they work for or represent. null if never stated.
+- visitor_type: classify based on context. "hiring_manager" if they're evaluating Yousuf for a role or hiring. "client" if they represent a company looking for services/collaboration. "curious" if neither is clear (default).
+- visitor_email: an email address the visitor shared. null if never stated.
+
+Return ONLY the JSON object.`;
+
+interface VisitorInfo {
+  visitor_name: string | null;
+  visitor_company: string | null;
+  visitor_type: "hiring_manager" | "client" | "curious";
+  visitor_email: string | null;
+}
+
+async function extractVisitorInfo(transcript: unknown): Promise<VisitorInfo> {
+  const fallback: VisitorInfo = {
+    visitor_name: null,
+    visitor_company: null,
+    visitor_type: "curious",
+    visitor_email: null,
+  };
+
+  try {
+    const extraction = await anthropic.messages.create({
+      model: "claude-sonnet-4-6",
+      max_tokens: 200,
+      system: EXTRACTION_PROMPT,
+      messages: [
+        { role: "user", content: JSON.stringify(transcript) },
+      ],
+    });
+
+    const text = extraction.content
+      .filter((block): block is Anthropic.TextBlock => block.type === "text")
+      .map(block => block.text)
+      .join("");
+
+    const parsed = JSON.parse(text);
+
+    return {
+      visitor_name: parsed.visitor_name ?? null,
+      visitor_company: parsed.visitor_company ?? null,
+      visitor_type: ["hiring_manager", "client", "curious"].includes(parsed.visitor_type)
+        ? parsed.visitor_type
+        : "curious",
+      visitor_email: parsed.visitor_email ?? null,
+    };
+  } catch (error) {
+    console.error("Visitor info extraction error:", error);
+    return fallback;
+  }
+}
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
@@ -151,18 +231,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const transcript = [...messages, { role: "assistant", content: responseText }];
 
-    supabase
-      .from("conversations")
-      .insert({
-        session_id: sessionId,
-        transcript,
-        booked_call: bookedCall,
-      })
-      .then(({ error }) => {
-        if (error) {
-          console.error("Supabase save error:", error);
-        }
-      });
+    extractVisitorInfo(transcript).then(visitorInfo => {
+      supabase
+        .from("conversations")
+        .insert({
+          session_id: sessionId,
+          transcript,
+          booked_call: bookedCall,
+          visitor_name: visitorInfo.visitor_name,
+          visitor_company: visitorInfo.visitor_company,
+          visitor_type: visitorInfo.visitor_type,
+          visitor_email: visitorInfo.visitor_email,
+        })
+        .then(({ error }) => {
+          if (error) {
+            console.error("Supabase save error:", error);
+          }
+        });
+    });
   } catch (error) {
     console.error("Anthropic API error:", error);
     res.status(500).json({ error: "Failed to get response from Claude" });
