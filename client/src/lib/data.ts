@@ -72,7 +72,7 @@ export const caseStudies: CaseStudy[] = [
     tag: "AI Architecture · INFINITI MENA · 2024–Present",
     title: "Warehouse-Native AI Marketing Architecture",
     oneLiner: "Designed end-to-end AI marketing infrastructure connecting data warehouse, CDP, and GenAI layers.",
-    image: "/images/warehouse-architecture-diagram.png",
+    image: "/architecture.jpg",
     expanded: `Most enterprises connect AI to fragmented data sources and wonder why outputs are inconsistent. I designed this architecture to solve that — a warehouse-first approach where all data unifies before any AI or activation layer touches it — cleaner identity resolution, better LLM context, and activation built on verified data rather than guesswork.
 
 The architecture flows from multiple data sources (web analytics, CRM, connected vehicle data, surveys) through cloud infrastructure and ETL pipelines into a central Snowflake data warehouse — the single source of truth. From there, identity resolution and data science models run on clean data. An AI layer connects both native in-warehouse LLMs and external GenAI services (AWS Bedrock, Claude, RAG) directly to the warehouse. A CDP handles activation — segment building, real-time events, identity matching — and outputs feed into paid media, CRM journeys, BI dashboards, and GenAI-powered NLQ insights.
