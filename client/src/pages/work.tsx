@@ -63,6 +63,13 @@ export default function Work() {
                 {expanded === study.id && (
                   <div className="px-6 pb-8 border-t border-border">
                     <div className="pt-6 prose prose-invert max-w-none">
+                      {study.image && (
+                        <img
+                          src={study.image}
+                          alt={`${study.title} diagram`}
+                          className="w-full rounded-lg border border-border mb-6"
+                        />
+                      )}
                       {study.expanded.split('\n\n').map((para, i) => (
                         <p key={i} className="text-muted-foreground leading-relaxed mb-4 text-[15px]">
                           {para}

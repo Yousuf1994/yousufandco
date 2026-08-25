@@ -63,6 +63,7 @@ export interface CaseStudy {
   title: string;
   oneLiner: string;
   expanded: string;
+  image?: string;
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -70,8 +71,9 @@ export const caseStudies: CaseStudy[] = [
     id: "warehouse-ai",
     tag: "AI Architecture · INFINITI MENA · 2024–Present",
     title: "Warehouse-Native AI Marketing Architecture",
-    oneLiner: "Designed end-to-end AI infrastructure connecting data warehouse, CDP, and GenAI layers.",
-    expanded: `Most enterprises connect AI to fragmented data sources and wonder why outputs are inconsistent. I designed this architecture to solve that — a warehouse-first approach where all data unifies before any AI or activation layer touches it.
+    oneLiner: "Designed end-to-end AI marketing infrastructure connecting data warehouse, CDP, and GenAI layers.",
+    image: "/images/warehouse-architecture-diagram.png",
+    expanded: `Most enterprises connect AI to fragmented data sources and wonder why outputs are inconsistent. I designed this architecture to solve that — a warehouse-first approach where all data unifies before any AI or activation layer touches it — cleaner identity resolution, better LLM context, and activation built on verified data rather than guesswork.
 
 The architecture flows from multiple data sources (web analytics, CRM, connected vehicle data, surveys) through cloud infrastructure and ETL pipelines into a central Snowflake data warehouse — the single source of truth. From there, identity resolution and data science models run on clean data. An AI layer connects both native in-warehouse LLMs and external GenAI services (AWS Bedrock, Claude, RAG) directly to the warehouse. A CDP handles activation — segment building, real-time events, identity matching — and outputs feed into paid media, CRM journeys, BI dashboards, and GenAI-powered NLQ insights.
 
@@ -191,6 +193,15 @@ export const products = [
     description: "A chatbot trained on my background, skills, working style, and honest limitations. It tells my story, answers questions about my experience, and qualifies visitors — hiring managers and potential clients alike. When the conversation goes deep, it redirects to a real call. Try it in the Ask Me section.",
     cta: "Try it now",
     ctaHref: "/askme"
+  },
+  {
+    id: "roast-in",
+    status: "LIVE",
+    title: "Roast-In",
+    builtWith: "Claude API · React · Supabase · Vercel",
+    description: "A viral AI product that roasts your LinkedIn profile. Upload your LinkedIn data export, paste your profile, or share a PDF — Claude analyzes your public activity and delivers a brutally honest, specific roast. Built with privacy first: your data is analyzed and immediately deleted. Session-based identification means returning users get a personalized experience. The real purpose: building a structured dataset of professional patterns for future AI products.",
+    cta: "Get Roasted",
+    ctaHref: "https://roast-in.vercel.app"
   }
 ];
 
