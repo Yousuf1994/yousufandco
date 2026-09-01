@@ -202,6 +202,16 @@ export const products = [
     description: "A viral AI product that roasts your LinkedIn profile. Upload your LinkedIn data export, paste your profile, or share a PDF — Claude analyzes your public activity and delivers a brutally honest, specific roast. Built with privacy first: your data is analyzed and immediately deleted. Session-based identification means returning users get a personalized experience. The real purpose: building a structured dataset of professional patterns for future AI products.",
     cta: "Get Roasted",
     ctaHref: "https://roast-in.vercel.app"
+  },
+  {
+    id: "evalkit",
+    status: "LIVE",
+    title: "EvalKit",
+    subtitle: "AI Quality Monitoring for E-Commerce Support Bots",
+    builtWith: "FastAPI · SQLAlchemy · Pydantic · Gemini · SQLite",
+    description: "A profile-driven LLM-as-judge that scores e-commerce support-bot conversations across four criteria — resolution, tone, policy adherence, and escalation. The headline metric is hallucination rate. The key design decision: a red-line mechanism that caps the score when a bot fabricates a policy or product detail, regardless of how polished the response reads. Because a fluent lie is worse than a clumsy honest answer. Built to tell businesses not just how their bot scored — but whether it is getting better or worse.",
+    cta: "View EvalKit",
+    ctaHref: "https://eval-kit-three.vercel.app"
   }
 ];
 

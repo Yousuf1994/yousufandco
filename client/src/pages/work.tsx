@@ -110,6 +110,9 @@ export default function Work() {
                 </div>
 
                 <h3 className="text-base font-medium text-foreground mb-1">{product.title}</h3>
+                {product.subtitle && (
+                  <p className="text-sm text-foreground/80 mb-2">{product.subtitle}</p>
+                )}
                 <p className="text-[11px] text-muted-foreground uppercase tracking-wider mb-4">
                   Built with: {product.builtWith}
                 </p>
