@@ -34,7 +34,7 @@ export function FloatingCTA() {
         onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 6px 32px rgba(29, 158, 117, 0.5), 0 2px 8px rgba(0,0,0,0.3)")}
         onMouseLeave={e => (e.currentTarget.style.boxShadow = "0 4px 24px rgba(29, 158, 117, 0.35), 0 2px 8px rgba(0,0,0,0.3)")}
       >
-        Talk to Yousuf <span style={{ fontSize: "13px" }}>✦</span>
+        My Digital Self <span style={{ fontSize: "13px" }}>✦</span>
       </span>
     </Link>
   );

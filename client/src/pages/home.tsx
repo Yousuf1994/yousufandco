@@ -1,16 +1,15 @@
 import { useState, FormEvent } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { ToolsTicker } from "@/components/ToolsTicker";
+import { ApproachRing } from "@/components/ApproachRing";
 import { Button } from "@/components/ui/button";
-import { Check, ArrowRight, ExternalLink } from "lucide-react";
 import { Link } from "wouter";
-import { products } from "@/lib/data";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { cn } from "@/lib/utils";
 
 export default function Home() {
   const { toast } = useToast();
@@ -104,16 +103,21 @@ export default function Home() {
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-tight text-foreground">
-                Most AI projects inside companies die between the idea and the build.
+                Before you build anything — let's find out what's actually broken.
               </h1>
 
               <p className="text-[17px] text-muted-foreground leading-relaxed max-w-lg">
-                I work in that gap. Not as a developer — but as a diagnostician. I identify where AI can move the needle, design the solution architecture, and drive it from concept to deployed product by connecting the right people, tools, and data.
+                I'm Yousuf. I'm a Digital Product Manager who goes into businesses, asks the questions nobody asked, and builds what actually moves the needle — with AI where it genuinely helps.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground h-12 px-8" asChild>
-                  <Link href="/work"><span className="cursor-pointer">View my work</span></Link>
+                  <Link href="/askme"><span className="cursor-pointer">Talk to my digital self</span></Link>
+                </Button>
+                <Button size="lg" variant="outline" className="border-border hover:border-primary hover:text-primary h-12 px-8" asChild>
+                  <a href="https://calendly.com/yousuf-workspace/30-minute-discovery-call" target="_blank" rel="noopener noreferrer">
+                    Book a call
+                  </a>
                 </Button>
               </div>
             </div>
@@ -132,6 +136,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ToolsTicker />
 
       {/* ── ABOUT ── */}
       <section className="py-24 border-t border-border" id="about">
@@ -156,91 +162,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── RECENT WORK ── */}
+      {/* ── MY APPROACH ── */}
       <section className="py-24 border-t border-border">
         <div className="container mx-auto px-6">
-          <div className="flex justify-between items-end mb-12">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-primary mb-4 block">RECENT WORK</span>
-              <h2 className="text-3xl md:text-4xl font-medium">Deployed. Measurable. Real.</h2>
-            </div>
-            <Link href="/work">
-              <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer flex items-center gap-1">
-                View all work <ArrowRight size={14} />
-              </span>
-            </Link>
+          <div className="max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-6 block">MY APPROACH</span>
+            <h2 className="text-3xl md:text-4xl font-medium leading-tight">
+              How I work — whether I'm inside your company or working alongside it.
+            </h2>
           </div>
 
-          <div className="space-y-3">
-            {[
-              { tag: "AI Architecture · INFINITI MENA", title: "Warehouse-Native AI Marketing Architecture", result: "Warehouse-first approach — AI runs on clean, verified data across all channels." },
-              { tag: "Data Product · INFINITI MENA", title: "From Spreadsheet to Real-Time Decision Infrastructure", result: "Manual Excel eliminated. Real-time data. CRM activations on live signals." },
-              { tag: "Product Launch · GCC", title: "Zero-Budget App Launch — 27% Activation in Week One", result: "27% user activation in week one across GCC markets with zero paid media." }
-            ].map((item, i) => (
-              <Link href="/work" key={i}>
-                <span className="group flex items-center justify-between p-6 bg-card border border-border rounded-lg hover:border-primary/40 transition-all cursor-pointer block">
-                  <div className="flex-1">
-                    <span className="text-[11px] font-bold uppercase tracking-widest text-primary mb-1 block">{item.tag}</span>
-                    <h3 className="text-base font-medium text-foreground group-hover:text-primary transition-colors">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground mt-1">{item.result}</p>
-                  </div>
-                  <ArrowRight size={16} className="text-muted-foreground group-hover:text-primary transition-colors shrink-0 ml-4" />
-                </span>
-              </Link>
-            ))}
+          <div className="flex justify-center">
+            <ApproachRing />
           </div>
         </div>
       </section>
 
-      {/* ── PRODUCTS ── */}
-      <section className="py-24 border-t border-border">
-        <div className="container mx-auto px-6">
-          <div className="mb-12">
-            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-4 block">PRODUCTS — BUILT WITH AI</span>
-            <h2 className="text-3xl md:text-4xl font-medium mb-3">Not just a strategist. A builder.</h2>
-            <p className="text-muted-foreground max-w-xl">
-              Real products built using Claude Code and AI-assisted development — proof that the gap between idea and prototype is closing.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {products.map((product) => (
-              <div key={product.id} className="bg-card border border-border rounded-lg p-6 flex flex-col">
-                <div className="flex items-center justify-between mb-4">
-                  <span className={cn(
-                    "text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded border",
-                    product.status === "LIVE"
-                      ? "text-primary border-primary/30 bg-primary/10"
-                      : "text-amber-400 border-amber-400/30 bg-amber-400/10"
-                  )}>
-                    {product.status}
-                  </span>
-                </div>
-                <h3 className="text-base font-medium text-foreground mb-1">{product.title}</h3>
-                <p className="text-[11px] text-muted-foreground uppercase tracking-wider mb-4">Built with: {product.builtWith}</p>
-                <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-5 line-clamp-4">{product.description}</p>
-                {product.ctaHref.startsWith('/') ? (
-                  <Link href={product.ctaHref}>
-                    <span className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors cursor-pointer">
-                      {product.cta} <ExternalLink size={14} />
-                    </span>
-                  </Link>
-                ) : (
-                  <a href={product.ctaHref} className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
-                    {product.cta} <ExternalLink size={14} />
-                  </a>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── ASK ME ── */}
+      {/* ── MY DIGITAL SELF ── */}
       <section className="py-24 border-t border-border">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto bg-card border border-border rounded-xl p-10 md:p-14 text-center">
-            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-4 block">ASK ME</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-4 block">MY DIGITAL SELF</span>
             <h2 className="text-3xl md:text-4xl font-medium mb-4 leading-tight">
               I'm not always available.<br />This version of me is.
             </h2>

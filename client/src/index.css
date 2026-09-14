@@ -120,4 +120,13 @@
   .border-teal { border-color: #1d9e75; }
   .bg-teal\/10 { background-color: rgba(29,158,117,0.1); }
   .bg-purple\/10 { background-color: rgba(83,74,183,0.1); }
+
+  @keyframes ticker-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .animate-ticker-scroll {
+    animation: ticker-scroll 28s linear infinite;
+  }
 }
