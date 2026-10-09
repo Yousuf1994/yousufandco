@@ -126,6 +126,11 @@
     to { transform: translateX(-50%); }
   }
 
+  .askme-page {
+    height: 100vh;
+    height: 100dvh;
+  }
+
   .animate-ticker-scroll {
     animation: ticker-scroll 28s linear infinite;
   }

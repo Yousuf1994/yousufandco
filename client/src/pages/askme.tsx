@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Send, ExternalLink } from "lucide-react";
 
@@ -95,24 +94,24 @@ export default function AskMe() {
   }
 
   return (
-    <div className="min-h-screen bg-background font-sans">
+    <div className="askme-page flex flex-col overflow-hidden bg-background font-sans">
       <Navbar />
 
-      <section className="pt-32 pb-16 container mx-auto px-6">
-        <div className="max-w-3xl mx-auto">
+      <section className="flex-1 min-h-0 flex flex-col pt-[96px] pb-3 container mx-auto px-6">
+        <div className="flex-1 min-h-0 flex flex-col max-w-3xl w-full mx-auto">
           {/* Header */}
-          <div className="text-center mb-10">
-            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-4 block">ASK ME</span>
-            <h1 className="text-3xl md:text-4xl font-medium mb-4 text-foreground">
+          <div className="shrink-0 text-center mb-4">
+            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-2 block">ASK ME</span>
+            <h1 className="text-2xl md:text-3xl font-medium mb-2 text-foreground">
               I'm not always available. This version of me is.
             </h1>
             <p className="text-muted-foreground text-[15px] leading-relaxed max-w-xl mx-auto">
-              This is my AI clone — trained on my background, experience, working style, and honest limitations. Ask it about my work, my approach, or whether I might be the right fit for what you're building. When the conversation goes deep, it'll point you to a real call.
+              Ask about my work, my approach, or whether I’m a fit for what you’re building.
             </p>
           </div>
 
           {/* Chat window */}
-          <div className="bg-card border border-border rounded-xl overflow-hidden flex flex-col h-[600px] min-h-[600px]">
+          <div className="flex-1 min-h-0 bg-card border border-border rounded-xl overflow-hidden flex flex-col">
             {/* Messages */}
             <div ref={chatContainerRef} className="flex-1 min-h-0 overflow-y-auto p-6 space-y-4">
               {messages.map((msg, i) => (
@@ -190,18 +189,19 @@ export default function AskMe() {
           </div>
 
           {/* CTA below chat */}
-          <div className="text-center mt-10">
-            <p className="text-muted-foreground text-sm mb-4">Prefer to skip straight to a conversation?</p>
-            <Button variant="outline" className="border-border hover:border-primary hover:text-primary" asChild>
-              <a href="https://calendly.com/yousuf-workspace/30-minute-discovery-call" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                Book a 30-min call <ExternalLink size={14} />
-              </a>
-            </Button>
-          </div>
+          <p className="shrink-0 text-center text-muted-foreground text-sm mt-3">
+            Prefer to skip straight to a conversation?{" "}
+            <a
+              href="https://calendly.com/yousuf-workspace/30-minute-discovery-call"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-primary hover:underline"
+            >
+              Book a 30-min call <ExternalLink size={12} />
+            </a>
+          </p>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }
