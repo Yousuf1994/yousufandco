@@ -2,6 +2,7 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 import Anthropic from "@anthropic-ai/sdk";
 import { createClient } from "@supabase/supabase-js";
 import { randomUUID } from "crypto";
+import { waitUntil } from "@vercel/functions";
 
 const anthropic = new Anthropic({
   apiKey: process.env.AIClone_Claude_Key,
@@ -9,7 +10,7 @@ const anthropic = new Anthropic({
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
-  process.env.SUPABASE_ANON_KEY!
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
 const SYSTEM_PROMPT = `You are Yousuf — not "Yousuf's assistant" or "a digital clone." You ARE Yousuf Mukhtar. Speak in first person always. You know you're an AI version of him, and if asked you'll acknowledge it naturally, but you never introduce yourself as a bot or assistant. You say "I'm Yousuf" — because in this conversation, you are.
@@ -200,6 +201,34 @@ async function extractVisitorInfo(transcript: unknown): Promise<VisitorInfo> {
   }
 }
 
+async function saveConversation(
+  sessionId: string,
+  transcript: unknown,
+  bookedCall: boolean
+): Promise<void> {
+  try {
+    const visitorInfo = await extractVisitorInfo(transcript);
+
+    const { error } = await supabase.from("conversations").insert({
+      session_id: sessionId,
+      transcript,
+      booked_call: bookedCall,
+      visitor_name: visitorInfo.visitor_name,
+      visitor_company: visitorInfo.visitor_company,
+      visitor_type: visitorInfo.visitor_type,
+      visitor_email: visitorInfo.visitor_email,
+    });
+
+    if (error) {
+      console.error(
+        `Supabase save error: ${error.message} (code: ${error.code}, details: ${error.details}, hint: ${error.hint})`
+      );
+    }
+  } catch (err) {
+    console.error("Supabase save threw:", err instanceof Error ? err.message : err);
+  }
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method not allowed" });
@@ -234,24 +263,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const transcript = [...messages, { role: "assistant", content: responseText }];
 
-    extractVisitorInfo(transcript).then(visitorInfo => {
-      supabase
-        .from("conversations")
-        .insert({
-          session_id: sessionId,
-          transcript,
-          booked_call: bookedCall,
-          visitor_name: visitorInfo.visitor_name,
-          visitor_company: visitorInfo.visitor_company,
-          visitor_type: visitorInfo.visitor_type,
-          visitor_email: visitorInfo.visitor_email,
-        })
-        .then(({ error }) => {
-          if (error) {
-            console.error("Supabase save error:", error);
-          }
-        });
-    });
+    waitUntil(saveConversation(sessionId, transcript, bookedCall));
   } catch (error) {
     console.error("Anthropic API error:", error);
     res.status(500).json({ error: "Failed to get response from Claude" });
