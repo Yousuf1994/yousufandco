@@ -94,13 +94,13 @@ export default function AskMe() {
   }
 
   return (
-    <div className="askme-page flex flex-col overflow-hidden bg-background font-sans">
+    <div className="min-h-screen bg-background font-sans">
       <Navbar />
 
-      <section className="flex-1 min-h-0 flex flex-col pt-[96px] pb-3 container mx-auto px-6">
-        <div className="flex-1 min-h-0 flex flex-col max-w-3xl w-full mx-auto">
+      <section className="pt-[96px] pb-8 container mx-auto px-6">
+        <div className="max-w-3xl mx-auto">
           {/* Header */}
-          <div className="shrink-0 text-center mb-4">
+          <div className="text-center mb-4">
             <span className="text-xs font-bold uppercase tracking-widest text-primary mb-2 block">ASK ME</span>
             <h1 className="text-2xl md:text-3xl font-medium mb-2 text-foreground">
               I'm not always available. This version of me is.
@@ -111,7 +111,7 @@ export default function AskMe() {
           </div>
 
           {/* Chat window */}
-          <div className="flex-1 min-h-0 bg-card border border-border rounded-xl overflow-hidden flex flex-col">
+          <div className="askme-chat bg-card border border-border rounded-xl overflow-hidden flex flex-col">
             {/* Messages */}
             <div ref={chatContainerRef} className="flex-1 min-h-0 overflow-y-auto p-6 space-y-4">
               {messages.map((msg, i) => (
@@ -189,17 +189,19 @@ export default function AskMe() {
           </div>
 
           {/* CTA below chat */}
-          <p className="shrink-0 text-center text-muted-foreground text-sm mt-3">
-            Prefer to skip straight to a conversation?{" "}
-            <a
-              href="https://calendly.com/yousuf-workspace/30-minute-discovery-call"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-primary hover:underline"
-            >
-              Book a 30-min call <ExternalLink size={12} />
-            </a>
-          </p>
+          <div className="text-center mt-12">
+            <p className="text-muted-foreground text-sm mb-3">Prefer a real conversation?</p>
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
+              <a
+                href="https://calendly.com/yousuf-workspace/30-minute-discovery-call"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2"
+              >
+                Book a 30-min call <ExternalLink size={14} />
+              </a>
+            </Button>
+          </div>
         </div>
       </section>
     </div>

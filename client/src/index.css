@@ -126,9 +126,9 @@
     to { transform: translateX(-50%); }
   }
 
-  .askme-page {
-    height: 100vh;
-    height: 100dvh;
+  .askme-chat {
+    height: calc(100vh - 260px);
+    height: calc(100dvh - 260px);
   }
 
   .animate-ticker-scroll {
