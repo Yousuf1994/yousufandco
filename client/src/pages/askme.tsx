@@ -13,8 +13,29 @@ interface Message {
 const BOOKING_TOKEN = "[SHOW_BOOKING_CTA]";
 const BOOKING_URL = "https://calendly.com/yousuf-workspace/30-minute-discovery-call";
 
+function generateId(): string {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID();
+  }
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
+}
+
+function getOrCreateId(store: "session" | "local", key: string): string {
+  try {
+    const storage = store === "session" ? window.sessionStorage : window.localStorage;
+    const existing = storage.getItem(key);
+    if (existing) return existing;
+    const id = generateId();
+    storage.setItem(key, id);
+    return id;
+  } catch {
+    return generateId();
+  }
+}
 
 export default function AskMe() {
+  const [sessionId] = useState(() => getOrCreateId("session", "askme_session_id"));
+  const [visitorId] = useState(() => getOrCreateId("local", "askme_visitor_id"));
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
@@ -48,6 +69,8 @@ export default function AskMe() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: nextMessages.map(({ role, content }) => ({ role, content })),
+          session_id: sessionId,
+          visitorId,
         }),
       });
 

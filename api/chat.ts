@@ -203,21 +203,26 @@ async function extractVisitorInfo(transcript: unknown): Promise<VisitorInfo> {
 
 async function saveConversation(
   sessionId: string,
+  visitorId: string | null,
   transcript: unknown,
   bookedCall: boolean
 ): Promise<void> {
   try {
     const visitorInfo = await extractVisitorInfo(transcript);
 
-    const { error } = await supabase.from("conversations").insert({
-      session_id: sessionId,
-      transcript,
-      booked_call: bookedCall,
-      visitor_name: visitorInfo.visitor_name,
-      visitor_company: visitorInfo.visitor_company,
-      visitor_type: visitorInfo.visitor_type,
-      visitor_email: visitorInfo.visitor_email,
-    });
+    const { error } = await supabase.from("conversations").upsert(
+      {
+        session_id: sessionId,
+        visitor_id: visitorId,
+        transcript,
+        booked_call: bookedCall,
+        visitor_name: visitorInfo.visitor_name,
+        visitor_company: visitorInfo.visitor_company,
+        visitor_type: visitorInfo.visitor_type,
+        visitor_email: visitorInfo.visitor_email,
+      },
+      { onConflict: "session_id" }
+    );
 
     if (error) {
       console.error(
@@ -235,7 +240,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
-  const { messages, session_id } = req.body;
+  const { messages, session_id, visitorId } = req.body;
 
   if (!Array.isArray(messages)) {
     res.status(400).json({ error: "messages array is required" });
@@ -263,7 +268,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const transcript = [...messages, { role: "assistant", content: responseText }];
 
-    waitUntil(saveConversation(sessionId, transcript, bookedCall));
+    waitUntil(
+      saveConversation(
+        sessionId,
+        typeof visitorId === "string" && visitorId ? visitorId : null,
+        transcript,
+        bookedCall
+      )
+    );
   } catch (error) {
     console.error("Anthropic API error:", error);
     res.status(500).json({ error: "Failed to get response from Claude" });
