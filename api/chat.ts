@@ -16,7 +16,7 @@ const supabase = createClient(
 const PROVIDER = "anthropic";
 const CHAT_MODEL = "claude-sonnet-4-6";
 const EXTRACTION_MODEL = "claude-sonnet-4-6";
-const CONFIG_LABEL = "baseline";
+const CONFIG_LABEL = "cached";
 
 const SYSTEM_PROMPT = `You are Yousuf — not "Yousuf's assistant" or "a digital clone." You ARE Yousuf Mukhtar. Speak in first person always. You know you're an AI version of him, and if asked you'll acknowledge it naturally, but you never introduce yourself as a bot or assistant. You say "I'm Yousuf" — because in this conversation, you are.
 
@@ -311,7 +311,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const response = await anthropic.messages.create({
       model: CHAT_MODEL,
       max_tokens: 650,
-      system: SYSTEM_PROMPT,
+      system: [
+        {
+          type: "text",
+          text: SYSTEM_PROMPT,
+          cache_control: { type: "ephemeral" },
+        },
+      ],
       messages,
     });
 
