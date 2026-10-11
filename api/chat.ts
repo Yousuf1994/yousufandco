@@ -13,6 +13,11 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
+const PROVIDER = "anthropic";
+const CHAT_MODEL = "claude-sonnet-4-6";
+const EXTRACTION_MODEL = "claude-sonnet-4-6";
+const CONFIG_LABEL = "baseline";
+
 const SYSTEM_PROMPT = `You are Yousuf — not "Yousuf's assistant" or "a digital clone." You ARE Yousuf Mukhtar. Speak in first person always. You know you're an AI version of him, and if asked you'll acknowledge it naturally, but you never introduce yourself as a bot or assistant. You say "I'm Yousuf" — because in this conversation, you are.
 
 YOUR PERSONALITY & ENERGY:
@@ -162,7 +167,51 @@ interface VisitorInfo {
   visitor_email: string | null;
 }
 
-async function extractVisitorInfo(transcript: unknown): Promise<VisitorInfo> {
+type TokenUsage = {
+  input_tokens?: number;
+  output_tokens?: number;
+  cache_read_input_tokens?: number | null;
+  cache_creation_input_tokens?: number | null;
+};
+
+async function logTurn(params: {
+  sessionId: string;
+  turnIndex: number;
+  callType: "chat" | "extraction";
+  model: string;
+  usage: TokenUsage;
+}): Promise<void> {
+  const { sessionId, turnIndex, callType, model, usage } = params;
+
+  try {
+    const { error } = await supabase.from("turns").insert({
+      session_id: sessionId,
+      turn_index: turnIndex,
+      call_type: callType,
+      provider: PROVIDER,
+      model,
+      config_label: CONFIG_LABEL,
+      input_tokens: usage.input_tokens ?? 0,
+      output_tokens: usage.output_tokens ?? 0,
+      cache_read_tokens: usage.cache_read_input_tokens ?? 0,
+      cache_write_tokens: usage.cache_creation_input_tokens ?? 0,
+    });
+
+    if (error) {
+      console.error(
+        `turns insert error: ${error.message} (code: ${error.code}, details: ${error.details}, hint: ${error.hint})`
+      );
+    }
+  } catch (err) {
+    console.error("logTurn threw:", err instanceof Error ? err.message : err);
+  }
+}
+
+async function extractVisitorInfo(
+  transcript: unknown,
+  sessionId: string,
+  turnIndex: number
+): Promise<VisitorInfo> {
   const fallback: VisitorInfo = {
     visitor_name: null,
     visitor_company: null,
@@ -172,12 +221,20 @@ async function extractVisitorInfo(transcript: unknown): Promise<VisitorInfo> {
 
   try {
     const extraction = await anthropic.messages.create({
-      model: "claude-sonnet-4-6",
+      model: EXTRACTION_MODEL,
       max_tokens: 200,
       system: EXTRACTION_PROMPT,
       messages: [
         { role: "user", content: JSON.stringify(transcript) },
       ],
+    });
+
+    await logTurn({
+      sessionId,
+      turnIndex,
+      callType: "extraction",
+      model: EXTRACTION_MODEL,
+      usage: extraction.usage,
     });
 
     const text = extraction.content
@@ -205,10 +262,11 @@ async function saveConversation(
   sessionId: string,
   visitorId: string | null,
   transcript: unknown,
-  bookedCall: boolean
+  bookedCall: boolean,
+  turnIndex: number
 ): Promise<void> {
   try {
-    const visitorInfo = await extractVisitorInfo(transcript);
+    const visitorInfo = await extractVisitorInfo(transcript, sessionId, turnIndex);
 
     const { error } = await supabase.from("conversations").upsert(
       {
@@ -251,7 +309,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     const response = await anthropic.messages.create({
-      model: "claude-sonnet-4-6",
+      model: CHAT_MODEL,
       max_tokens: 650,
       system: SYSTEM_PROMPT,
       messages,
@@ -268,13 +326,27 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const transcript = [...messages, { role: "assistant", content: responseText }];
 
+    const turnIndex = messages.filter(
+      (m: { role?: string }) => m.role === "user"
+    ).length;
+
     waitUntil(
-      saveConversation(
-        sessionId,
-        typeof visitorId === "string" && visitorId ? visitorId : null,
-        transcript,
-        bookedCall
-      )
+      Promise.all([
+        logTurn({
+          sessionId,
+          turnIndex,
+          callType: "chat",
+          model: CHAT_MODEL,
+          usage: response.usage,
+        }),
+        saveConversation(
+          sessionId,
+          typeof visitorId === "string" && visitorId ? visitorId : null,
+          transcript,
+          bookedCall,
+          turnIndex
+        ),
+      ])
     );
   } catch (error) {
     console.error("Anthropic API error:", error);
